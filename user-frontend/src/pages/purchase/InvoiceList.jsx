@@ -46,118 +46,116 @@ const InvoiceList = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 p-6">
-      <div className="w-full bg-white p-6 rounded-xl shadow-md border border-gray-200">
-           <Helmet>
-                        <title>Recent Purchase Invoices - FancyStore</title>
-                        <meta name="description" content="View recent purchase invoices in FancyStore admin panel" />
-                        <link rel="canonical" href={window.location.href} />
-                      </Helmet>
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-sm">
+      <Helmet>
+        <title>Recent Purchase Invoices - FancyStore</title>
+        <meta name="description" content="View recent purchase invoices in FancyStore admin panel" />
+        <link rel="canonical" href={window.location.href} />
+      </Helmet>
 
-        <Breadcrumbs
-          paths={[{ label: "Home", to: "/" }, { label: "Purchases" }]}
-        />
+      <Breadcrumbs
+        paths={[{ label: "Dashboard", to: "/dashboard" }, { label: "Purchases" }]}
+      />
 
-        <h2 className="text-3xl font-bold mb-6 text-gray-900">
-          Recent Purchases
-        </h2>
+      <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-lg md:text-xl font-bold text-slate-900">Purchase Invoices</h2>
+          <p className="text-sm text-slate-500 mt-0.5">Stock purchased from vendors</p>
+        </div>
+        <Link
+          to="/purchase/new"
+          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 shadow-sm transition text-center"
+        >
+          + New Invoice
+        </Link>
+      </div>
 
-        {/* TABLE */}
-        <div className="overflow-x-auto rounded-xl border border-gray-300 shadow-sm">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-100">
+      {/* TABLE */}
+      <div className="overflow-x-auto rounded-xl border border-slate-200">
+        <table className="min-w-full text-sm">
+          <thead className="bg-slate-50">
+            <tr>
+              {["#", "Invoice No", "Vendor", "Grand Total", "Actions"].map((h) => (
+                <th key={h} className="px-4 py-3 text-left font-semibold text-slate-600">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+
+          <tbody className="divide-y divide-slate-100">
+            {purchases.length === 0 && !loading ? (
               <tr>
-                {["#", "Invoice No", "Vendor", "Grand Total", "Actions"].map(
-                  (h) => (
-                    <th
-                      key={h}
-                      className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase"
-                    >
-                      {h}
-                    </th>
-                  )
-                )}
+                <td colSpan={5} className="px-4 py-8 text-center text-slate-500">
+                  No purchases found.
+                </td>
               </tr>
-            </thead>
-
-            <tbody className="bg-white divide-y divide-gray-200">
-              {purchases.length === 0 && !loading ? (
-                <tr>
-                  <td
-                    colSpan={5}
-                    className="py-8 text-center text-gray-500 text-sm"
-                  >
-                    No purchases found.
+            ) : (
+              purchases.map((p, index) => (
+                <tr key={p._id} className="hover:bg-slate-50 transition-colors">
+                  <td className="px-4 py-3 text-slate-500">
+                    {(currentPage - 1) * limit + index + 1}
                   </td>
-                </tr>
-              ) : (
-                purchases.map((p, index) => (
-                  <tr
-                    key={p._id}
-                    className="hover:bg-gray-50 transition"
-                  >
-                    <td className="px-6 py-4 text-gray-700 text-sm">
-                      {(currentPage - 1) * limit + index + 1}
-                    </td>
 
-                    <td className="px-6 py-4 text-blue-600 font-medium">
-                      <Link to={`/purchase/${p._id}`} className="hover:underline">
-                        {p.invoiceNo}
-                      </Link>
-                    </td>
+                  <td className="px-4 py-3">
+                    <Link to={`/purchase/${p._id}`} className="text-indigo-600 hover:underline font-medium">
+                      {p.invoiceNo}
+                    </Link>
+                  </td>
 
-                    <td className="px-6 py-4 text-gray-700">
-                      {p.vendor?.name || "N/A"}
-                    </td>
+                  <td className="px-4 py-3 text-slate-600">
+                    {p.vendor?.name || "N/A"}
+                  </td>
 
-                    <td className="px-6 py-4 text-gray-800 font-semibold">
-                      {formatCurrency(p.grandTotal)}
-                    </td>
+                  <td className="px-4 py-3 font-semibold tabular-nums text-slate-900">
+                    {formatCurrency(p.grandTotal)}
+                  </td>
 
-                    <td className="px-6 py-4 flex items-center gap-2">
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <ViewIcon to={`/purchase/${p._id}`} />
                       <button
                         onClick={() => handlePDF(p._id)}
-                        className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm shadow-sm"
+                        className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition shadow-sm"
                       >
                         Download PDF
                       </button>
-
-                      <ViewIcon to={`/purchase/${p._id}`} />
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination */}
-        {meta?.totalPages > 1 && (
-          <div className="flex justify-between items-center mt-6">
-            <button
-              onClick={() => setCurrentPage((p) => p - 1)}
-              disabled={currentPage === 1 || loading}
-              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 border rounded-lg disabled:opacity-50"
-            >
-              Previous
-            </button>
-
-            <span className="text-gray-700 font-medium text-sm">
-              Page {currentPage} of {meta.totalPages}
-            </span>
-
-            <button
-              onClick={() => setCurrentPage((p) => p + 1)}
-              disabled={currentPage === meta.totalPages || loading}
-              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 border rounded-lg disabled:opacity-50"
-            >
-              Next
-            </button>
-          </div>
-        )}
-
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
+
+      {/* Pagination */}
+      {meta?.totalPages > 1 && (
+        <div className="flex justify-between items-center mt-6 border-t border-slate-100 pt-4">
+          <button
+            onClick={() => setCurrentPage((p) => p - 1)}
+            disabled={currentPage === 1 || loading}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Previous
+          </button>
+
+          <span className="text-sm text-slate-600">
+            Page <span className="font-semibold text-slate-800">{currentPage}</span> of{" "}
+            <span className="font-semibold text-slate-800">{meta.totalPages}</span>
+          </span>
+
+          <button
+            onClick={() => setCurrentPage((p) => p + 1)}
+            disabled={currentPage === meta.totalPages || loading}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Next
+          </button>
+        </div>
+      )}
+
+      {error && <p className="text-red-600 text-sm mt-4">{error}</p>}
     </div>
   );
 };

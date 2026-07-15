@@ -20,7 +20,7 @@ const InventoryView = () => {
   if (loading) return <p className="p-6">Loading...</p>;
   if (!item) return <p className="p-6">No data</p>;
   const breadcrumbPaths = [
-  { label: "Home", to: "/home" },
+  { label: "Dashboard", to: "/dashboard" },
   { label: "Inventory", to: "/inventory/list" },
   { label: item?.name || "View Item" } // current page, item load hone ke baad dikhega
 ];

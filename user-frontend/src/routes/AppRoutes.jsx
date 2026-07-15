@@ -4,7 +4,6 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
 import ProtectedRoute from "./ProtectedRoute";
 
-import Home from "../components/home/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ForgetPassword from "../pages/auth/ForgetPassword";
@@ -34,6 +33,7 @@ import AssignRolePage from "../pages/roles/AssignRolePage";
 import RoleLists from "../pages/roles/RoleLists";
 import AddRole from "../pages/roles/AddRole";
 import PageNotFound from "../pages/404/PageNotFound";
+import Unauthorized from "../pages/unauthorized/Unauthorized";
 // import AssignRolePAge from "../pages/dashboard/AssignRolePage";
 // import RolePage from "../pages/dashboard/RolePage";
 
@@ -67,8 +67,6 @@ const AppRoutes = () => {
 
         {/* Protected */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<Home />} />
-
           <Route element={<ProtectedRoute permission="ViewDashboard" />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
@@ -146,7 +144,7 @@ const AppRoutes = () => {
         </Route>
 
         {/* Unauthorized */}
-        <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
 
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

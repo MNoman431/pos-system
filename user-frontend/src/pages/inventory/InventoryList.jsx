@@ -46,7 +46,7 @@ const InventoryList = () => {
     );
   };
   const breadcrumbPaths = [
-    { label: "Home", to: "/home" },
+    { label: "Dashboard", to: "/dashboard" },
     { label: "Inventory" }, // current page
   ];
 

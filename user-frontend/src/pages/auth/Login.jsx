@@ -98,20 +98,8 @@ const Login = () => {
 
               resetForm();
 
-              // Optional: Thoda delay to let the user see the toast
-             // Fixed: Admin → /dashboard, Normal → /home
-// setTimeout(() => {
-//   if (res.payload?.role?.roleName === "Admin") {
-//     navigate("/dashboard");
-//   } else {
-//     navigate("/home");
-//   }
-// }, 600);
-if (res.payload?.role?.roleName === "Admin") {
-  navigate("/dashboard"); 
-} else {
-  navigate("/home");      
-}
+              // Dashboard is the single landing page after login for every role.
+              navigate("/dashboard");
             } else {
               // If the thunk rejected without setting `error` in slice yet,
               // show a fallback

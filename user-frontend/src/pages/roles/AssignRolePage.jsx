@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles, fetchAllUsers, assignRole } from "../../redux/thunks/roleThunks/RoleThunk";
 import toast from "react-hot-toast";
+import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 
 const AssignRolePage = () => {
   const dispatch = useDispatch();
@@ -37,30 +38,36 @@ const AssignRolePage = () => {
     }
   };
 
+  const breadcrumbPaths = [
+    { label: "Dashboard", to: "/dashboard" },
+    { label: "Assign Role" },
+  ];
+
   if (!canAccessPage) {
     return (
-      <div className="mt-20 text-center text-red-600 text-xl font-semibold">
+      <div className="rounded-2xl border border-slate-200 bg-white p-10 shadow-sm mt-10 text-center text-red-600 text-lg font-semibold">
         🔒 Access Denied — Only Master can assign roles.
       </div>
     );
   }
 
   return (
-    <div className="w-full mx-auto p-10 mt-[1px]  bg-white shadow-xl rounded-2xl border border-gray-200">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-8 shadow-sm">
+      <Breadcrumbs paths={breadcrumbPaths} />
 
-      <h1 className="text-3xl font-bold mb-2 text-gray-900">Assign Role</h1>
-      <p className="text-gray-500 mb-8">Select a user and assign a role to manage access permissions.</p>
+      <h1 className="text-lg md:text-xl font-bold text-slate-900">Assign Role</h1>
+      <p className="text-sm text-slate-500 mt-0.5 mb-6">Select a user and assign a role to manage access permissions.</p>
 
       {/* Form Card */}
-      <div className="grid gap-6 md:grid-cols-2 mb-7">
+      <div className="grid gap-4 md:grid-cols-2 mb-6">
 
         {/* User Select */}
         <div>
-          <label className="font-medium text-gray-700 mb-1 block">Select User</label>
+          <label className="text-sm font-medium text-slate-700 mb-1 block">Select User</label>
           <select
             value={selectedUser}
             onChange={(e) => setSelectedUser(e.target.value)}
-            className="border border-gray-300 px-4 py-3 rounded-lg w-full bg-gray-50 hover:bg-gray-100 focus:ring-2 focus:ring-blue-400 transition"
+            className="border border-slate-300 px-3.5 py-2.5 rounded-lg w-full bg-white text-[15px] shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition"
           >
             <option value="">Choose a user...</option>
             {allUsers.map((u) => (
@@ -73,11 +80,11 @@ const AssignRolePage = () => {
 
         {/* Role Select */}
         <div>
-          <label className="font-medium text-gray-700 mb-1 block">Select Role</label>
+          <label className="text-sm font-medium text-slate-700 mb-1 block">Select Role</label>
           <select
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
-            className="border border-gray-300 px-4 py-3 rounded-lg w-full bg-gray-50 hover:bg-gray-100 focus:ring-2 focus:ring-blue-400 transition"
+            className="border border-slate-300 px-3.5 py-2.5 rounded-lg w-full bg-white text-[15px] shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition"
           >
             <option value="">Choose a role...</option>
             {roles.map((r) => (
@@ -92,41 +99,48 @@ const AssignRolePage = () => {
       {/* Assign Button */}
       <button
         onClick={handleAssign}
-        className="w-1/2 mx-auto block bg-black text-white py-3 rounded-xl font-semibold
-                  hover:bg-gray-800 shadow-md transition active:scale-95"
+        className="w-full sm:w-auto rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 shadow-sm transition active:scale-[0.98]"
       >
         Assign Role
       </button>
 
       {/* User List */}
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-gray-900">Users & Their Roles</h2>
+      <h2 className="text-base font-semibold mt-10 mb-3 text-slate-800">Users &amp; Their Roles</h2>
 
-      <div className="overflow-x-auto border rounded-xl shadow-sm">
-        <table className="w-full border-collapse text-gray-800">
-          <thead className="bg-gray-100">
-            <tr className="text-left border-b">
-              <th className="p-4 text-sm font-semibold">User</th>
-              <th className="p-4 text-sm font-semibold">Email</th>
-              <th className="p-4 text-sm font-semibold">Assigned Role</th>
+      <div className="overflow-x-auto rounded-xl border border-slate-200">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-slate-50">
+            <tr>
+              <th className="px-4 py-3 font-semibold text-slate-600">User</th>
+              <th className="px-4 py-3 font-semibold text-slate-600">Email</th>
+              <th className="px-4 py-3 font-semibold text-slate-600">Assigned Role</th>
             </tr>
           </thead>
 
-          <tbody>
-            {allUsers.map((u) => (
-              <tr key={u._id} className="border-t hover:bg-gray-50 transition">
-                <td className="p-4">{u.firstName} {u.lastName}</td>
-                <td className="p-4">{u.email}</td>
-                <td className="p-4">
-                  {u.roleId ? (
-                    <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                      {roles.find((r) => r._id === u.roleId)?.roleName || "—"}
-                    </span>
-                  ) : (
-                    <span className="text-gray-400 text-sm">No Role Assigned</span>
-                  )}
+          <tbody className="divide-y divide-slate-100">
+            {allUsers.length === 0 ? (
+              <tr>
+                <td colSpan={3} className="px-4 py-8 text-center text-slate-500">
+                  No users found
                 </td>
               </tr>
-            ))}
+            ) : (
+              allUsers.map((u) => (
+                <tr key={u._id} className="hover:bg-slate-50 transition-colors">
+                  <td className="px-4 py-3 text-slate-800 font-medium">{u.firstName} {u.lastName}</td>
+                  <td className="px-4 py-3 text-slate-600">{u.email}</td>
+                  <td className="px-4 py-3">
+                    {u.roleId ? (
+                      <span className="px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-semibold">
+                        {roles.find((r) => r._id === u.roleId)?.roleName || "—"}
+                      </span>
+                    ) : (
+                      <span className="text-slate-400 text-sm">No Role Assigned</span>
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

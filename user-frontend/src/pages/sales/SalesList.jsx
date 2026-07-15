@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { api } from "../../services/api";
 import { ViewIcon } from "../../components/ui/icons/ActionIcons";
+import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import { Helmet } from "react-helmet-async";
 
 const SalesList = () => {
@@ -33,97 +34,108 @@ const SalesList = () => {
     }
   };
 
-  if (loading)
-    return (
-      <p className="text-center py-12 text-gray-500 text-lg animate-pulse">
-        Loading sales...
-      </p>
-    );
+  const breadcrumbPaths = [
+    { label: "Dashboard", to: "/dashboard" },
+    { label: "Sales" },
+  ];
 
   return (
-    <div className="w-full mx-auto p-6 mt-10 bg-white rounded-2xl shadow-xl border border-gray-100">
-         <Helmet>
-                      <title>All Sales Invoices - FancyStore</title>
-                      <meta name="description" content="View all sales invoices in FancyStore admin panel" />
-                      <link rel="canonical" href={window.location.href} />
-                    </Helmet>
-      <h2 className="text-3xl font-bold mb-6 text-gray-900 tracking-tight">
-        Sales Invoices
-      </h2>
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-sm">
+      <Helmet>
+        <title>All Sales Invoices - FancyStore</title>
+        <meta name="description" content="View all sales invoices in FancyStore admin panel" />
+        <link rel="canonical" href={window.location.href} />
+      </Helmet>
 
-      <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-100">
-            <tr>
-              {["Invoice #", "Customer", "Grand Total", "Date", "Actions"].map(
-                (h) => (
-                  <th
-                    key={h}
-                    className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
-                  >
-                    {h}
-                  </th>
-                )
-              )}
-            </tr>
-          </thead>
+      <Breadcrumbs paths={breadcrumbPaths} />
 
-          <tbody className="bg-white divide-y divide-gray-200">
-            {sales.map((sale) => (
-              <tr
-                key={sale._id}
-                className="hover:bg-gray-50 transition-all duration-150"
-              >
-                <td className="px-6 py-4 font-medium text-gray-800">
-                  {sale.invoiceNo}
-                </td>
-
-                <td className="px-6 py-4 text-gray-700">
-                  {sale.customer.name}
-                </td>
-
-                <td className="px-6 py-4 font-semibold text-gray-800">
-                  ${sale.grandTotal.toLocaleString()}
-                </td>
-
-                <td className="px-6 py-4 text-gray-600">
-                  {new Date(sale.createdAt).toLocaleDateString("en-GB")}
-                </td>
-
-                <td className="px-6 py-4 flex gap-2">
-                  {/* <Link
-                    to={`/sales/view/${sale._id}`}
-                    className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium transition"
-                  >
-                    View
-
-                  </Link> */}
-                  <ViewIcon   to={`/sales/view/${sale._id}`}></ViewIcon>
-
-                  <button
-                    onClick={() => handlePDF(sale._id)}
-                    className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition"
-                  >
-                    Download PDF
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-lg md:text-xl font-bold text-slate-900">Sales Invoices</h2>
+          <p className="text-sm text-slate-500 mt-0.5">All sales transactions recorded in the system</p>
+        </div>
+        <Link
+          to="/sales/add"
+          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 shadow-sm transition text-center"
+        >
+          + New Sale
+        </Link>
       </div>
 
+      {loading && (
+        <div className="mb-4 text-sm text-slate-500">Loading sales…</div>
+      )}
+
+      {!loading && (
+        <div className="overflow-x-auto rounded-xl border border-slate-200">
+          <table className="min-w-full text-sm">
+            <thead className="bg-slate-50">
+              <tr>
+                {["Invoice #", "Customer", "Grand Total", "Date", "Actions"].map((h) => (
+                  <th key={h} className="px-4 py-3 text-left font-semibold text-slate-600">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+
+            <tbody className="divide-y divide-slate-100">
+              {sales.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="px-4 py-8 text-center text-slate-500">
+                    No sales found
+                  </td>
+                </tr>
+              ) : (
+                sales.map((sale) => (
+                  <tr key={sale._id} className="hover:bg-slate-50 transition-colors">
+                    <td className="px-4 py-3 font-medium text-slate-800">
+                      {sale.invoiceNo}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-600">
+                      {sale.customer.name}
+                    </td>
+
+                    <td className="px-4 py-3 font-semibold tabular-nums text-slate-900">
+                      Rs {sale.grandTotal.toLocaleString()}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-500">
+                      {new Date(sale.createdAt).toLocaleDateString("en-GB")}
+                    </td>
+
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <ViewIcon to={`/sales/view/${sale._id}`} />
+                        <button
+                          onClick={() => handlePDF(sale._id)}
+                          className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition shadow-sm"
+                        >
+                          Download PDF
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       {/* Pagination */}
-      <div className="mt-6 flex justify-between items-center text-gray-700 font-medium">
-        <span className="text-sm">
-          Page {meta.page} of {meta.totalPages}
+      <div className="mt-6 flex justify-between items-center border-t border-slate-100 pt-4">
+        <span className="text-sm text-slate-600">
+          Page <span className="font-semibold text-slate-800">{meta.page}</span> of{" "}
+          <span className="font-semibold text-slate-800">{meta.totalPages}</span>
         </span>
 
-        <div className="space-x-2">
+        <div className="flex gap-2">
           {meta.page > 1 && (
             <button
               onClick={() => dispatch(fetchSalesThunk({ page: meta.page - 1 }))}
-              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
+              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 transition"
             >
               Previous
             </button>
@@ -132,7 +144,7 @@ const SalesList = () => {
           {meta.page < meta.totalPages && (
             <button
               onClick={() => dispatch(fetchSalesThunk({ page: meta.page + 1 }))}
-              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
+              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 transition"
             >
               Next
             </button>

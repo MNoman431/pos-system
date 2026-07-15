@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
-  HomeIcon,
   CubeIcon,
   ShoppingCartIcon,
   TruckIcon,
@@ -27,7 +26,7 @@ const Sidebar = ({ open, onClose }) => {
 
   const sections = useMemo(
     () => [
-      { type: "link", label: "Home", to: "/home", icon: HomeIcon, show: true },
+      { type: "link", label: "Dashboard", to: "/dashboard", icon: ChartBarIcon, show: can("ViewDashboard") },
       {
         type: "group",
         key: "inventory",
@@ -72,7 +71,6 @@ const Sidebar = ({ open, onClose }) => {
           { label: "Add Sale", to: "/sales/add", show: can("CreateSale") },
         ],
       },
-      { type: "link", label: "Dashboard", to: "/dashboard", icon: ChartBarIcon, show: can("ViewDashboard") },
       {
         type: "group",
         key: "roles",
