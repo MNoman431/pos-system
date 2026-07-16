@@ -57,16 +57,16 @@ const Login = () => {
       </div>
 
       {/* Form panel */}
-      <div className="flex flex-1 items-center justify-center bg-slate-50 px-4 py-12">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 p-8 sm:p-10">
+      <div className="flex flex-1 items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 py-12">
+      <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-8 sm:p-10">
         {/* Heading */}
-        <h1 className="text-3xl font-extrabold text-center mb-3 text-slate-900 tracking-tight">
+        <h1 className="text-3xl font-extrabold text-center mb-3 text-slate-900 dark:text-slate-100 tracking-tight">
           Welcome Back
         </h1>
 
-        <p className="text-center text-slate-500 mb-8 text-sm">
+        <p className="text-center text-slate-500 dark:text-slate-400 mb-8 text-sm">
           Sign in to continue to{" "}
-          <span className="font-bold text-indigo-600">FancyPOS</span>
+          <span className="font-bold text-indigo-600 dark:text-indigo-400">FancyPOS</span>
         </p>
 
         {/* Hidden fake fields for autocomplete mitigation */}
@@ -188,11 +188,11 @@ const Login = () => {
         </Formik>
 
         {/* Footer */}
-        <p className="text-center text-sm text-slate-600 mt-6">
+        <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-6">
           Don’t have an account?{" "}
           <Link
             to="/register"
-            className="font-semibold text-indigo-600 hover:underline"
+            className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             Register
           </Link>
@@ -202,7 +202,7 @@ const Login = () => {
         <p className="text-center text-sm mt-3">
           <button
             onClick={() => navigate("/forgot-password")}
-            className="text-indigo-600 hover:underline font-medium"
+            className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
           >
             Forgot password?
           </button>

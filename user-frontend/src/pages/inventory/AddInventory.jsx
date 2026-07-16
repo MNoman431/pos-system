@@ -149,13 +149,13 @@ const AddInventory = () => {
 
   return (
     <div className="p-6">
-      <div className="mx-auto max-w-6xl rounded border bg-white p-6">
+      <div className="mx-auto max-w-6xl rounded border bg-white p-6 dark:bg-slate-900 dark:border-slate-800">
            <Helmet>
                         <title>New Inventory Item - FancyStore</title>
                         <meta name="description" content="Create a new inventory item in FancyStore admin panel" />
                         <link rel="canonical" href={window.location.href} />
                       </Helmet>
-        <h2 className="mb-4 text-xl font-semibold">
+        <h2 className="mb-4 text-xl font-semibold text-slate-900 dark:text-slate-100">
           {isEdit ? "Edit Inventory" : "Add Inventory"}
         </h2>
 
@@ -163,7 +163,7 @@ const AddInventory = () => {
           {/* LEFT */}
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Item Code</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Item Code</label>
               <input
                 name="itemCode"
                 value={values.itemCode}
@@ -174,36 +174,36 @@ const AddInventory = () => {
                 pattern="\d{5}"
                 maxLength={5}
                 inputMode="numeric"
-                className={`mt-1 w-full rounded border px-3 py-2
+                className={`mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400
                   ${
                     !isEdit &&
                     dupCheck.exists &&
                     dupCheck.itemCode === values.itemCode
-                      ? "border-red-500 bg-red-50"
+                      ? "border-red-500 bg-red-50 dark:border-red-500 dark:bg-red-500/10"
                       : ""
                   }`}
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Item Name</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Item Name</label>
               <input
                 name="name"
                 value={values.name}
                 onChange={onChangeText}
                 required
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Vendor</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Vendor</label>
               <select
                 name="vendor"
                 value={values.vendor}
                 onChange={onChangeText}
                 required
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
               >
                 <option value="">Select Vendor</option>
                 {vendors.map((v) => (
@@ -215,12 +215,12 @@ const AddInventory = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Category</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Category</label>
               <select
                 name="category"
                 value={values.category}
                 onChange={onChangeText}
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
               >
                 {categories.map((c) => (
                   <option key={c}>{c}</option>
@@ -229,64 +229,64 @@ const AddInventory = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Cost Price</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Cost Price</label>
               <input
                 type="number"
                 name="costPrice"
                 value={values.costPrice}
                 onChange={onChangeNumber}
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Retail Price</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Retail Price</label>
               <input
                 type="number"
                 name="retailPrice"
                 value={values.retailPrice}
                 onChange={onChangeNumber}
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Wholesale Price</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Wholesale Price</label>
               <input
                 type="number"
                 name="wholesalePrice"
                 value={values.wholesalePrice}
                 onChange={onChangeNumber}
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Stock Quantity</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Stock Quantity</label>
               <input
                 type="number"
                 name="stockQty"
                 value={values.stockQty}
                 onChange={onChangeNumber}
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Description</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Description</label>
               <textarea
                 name="description"
                 value={values.description}
                 onChange={onChangeText}
                 rows={3}
-                className="mt-1 w-full rounded border px-3 py-2"
+                className="mt-1 w-full rounded border px-3 py-2 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
           </div>
 
           {/* RIGHT */}
           <div className="space-y-3">
-            <label className="text-sm font-medium text-gray-700">
+            <label className="text-sm font-medium text-gray-700 dark:text-slate-300">
               Item Image
             </label>
 
@@ -295,7 +295,7 @@ const AddInventory = () => {
 
               <label
                 htmlFor="itemImage"
-                className="flex h-32 w-32 cursor-pointer items-center justify-center rounded border bg-gray-50 hover:bg-gray-100"
+                className="flex h-32 w-32 cursor-pointer items-center justify-center rounded border bg-gray-50 hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700"
               >
                 {values.imageFile ? (
                   <img
@@ -310,7 +310,7 @@ const AddInventory = () => {
                     className="h-full w-full object-contain"
                   />
                 ) : (
-                  <span className="text-xs text-gray-400">Choose Image</span>
+                  <span className="text-xs text-gray-400 dark:text-slate-500">Choose Image</span>
                 )}
                 <input
                   type="file"
@@ -321,7 +321,7 @@ const AddInventory = () => {
                 />
               </label>
 
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-gray-400 dark:text-slate-500">
                 PNG, JPG, JPEG, WEBP up to 5MB
               </p>
             </div>
@@ -334,7 +334,7 @@ const AddInventory = () => {
                   dupCheck.exists &&
                   dupCheck.itemCode === values.itemCode)
               }
-              className="mt-6 w-full rounded bg-blue-600 py-2 text-white transition hover:bg-blue-700 disabled:opacity-60"
+              className="mt-6 w-full rounded bg-blue-600 py-2 text-white transition hover:bg-blue-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 disabled:opacity-60"
             >
               {isEdit ? "Update" : "Save"}
             </button>

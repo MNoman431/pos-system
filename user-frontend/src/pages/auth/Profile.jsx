@@ -28,8 +28,8 @@ const Profile = () => {
     if (error) toast.error(error);
   }, [error]);
 
-  if (loading) return <p className="text-center mt-10 text-gray-500">Loading profile...</p>;
-  if (!user) return <p className="text-center mt-10 text-gray-500">No user found</p>;
+  if (loading) return <p className="text-center mt-10 text-gray-500 dark:text-slate-400">Loading profile...</p>;
+  if (!user) return <p className="text-center mt-10 text-gray-500 dark:text-slate-400">No user found</p>;
 
   const handleImageChange = (file, setFieldValue) => {
     if (!file) return;
@@ -57,12 +57,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-3xl w-full mx-auto mt-14 p-10 bg-white rounded-3xl shadow-xl border border-gray-100">
+    <div className="max-w-3xl w-full mx-auto mt-14 p-10 bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-gray-100 dark:border-slate-800">
       <Helmet>
         <title>Profile</title>
       </Helmet>
 
-      <h1 className="text-4xl font-bold text-center mb-10 text-gray-900 tracking-tight">
+      <h1 className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-slate-100 tracking-tight">
         My Profile
       </h1>
 
@@ -72,20 +72,20 @@ const Profile = () => {
           <img
             src={preview || user.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
             alt="Profile"
-            className="w-36 h-36 rounded-full object-cover border-4 border-gray-200 shadow-lg"
+            className="w-36 h-36 rounded-full object-cover border-4 border-gray-200 dark:border-slate-700 shadow-lg"
           />
 
-          <h2 className="text-2xl font-semibold text-gray-900">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-slate-100">
             {user.firstName} {user.lastName}
           </h2>
 
-          <p className="text-gray-600">{user.email}</p>
-          <p className="text-gray-600">Age: {user.age ?? "N/A"}</p>
-          <p className="text-gray-600">Gender: {user.gender ?? "N/A"}</p>
+          <p className="text-gray-600 dark:text-slate-400">{user.email}</p>
+          <p className="text-gray-600 dark:text-slate-400">Age: {user.age ?? "N/A"}</p>
+          <p className="text-gray-600 dark:text-slate-400">Gender: {user.gender ?? "N/A"}</p>
 
           <button
             onClick={() => setEditMode(true)}
-            className="mt-6 w-52 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:scale-[1.03]"
+            className="mt-6 w-52 bg-blue-600 hover:bg-blue-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:scale-[1.03]"
           >
             Edit Profile
           </button>
@@ -114,10 +114,10 @@ const Profile = () => {
                   <img
                     src={preview || user.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                     alt="Profile"
-                    className="w-36 h-36 rounded-full object-cover border-4 border-gray-200 shadow-lg"
+                    className="w-36 h-36 rounded-full object-cover border-4 border-gray-200 dark:border-slate-700 shadow-lg"
                   />
 
-                  <label className="absolute bottom-2 right-2 bg-white border border-gray-300 p-2 rounded-full cursor-pointer shadow hover:bg-blue-600 hover:text-white transition">
+                  <label className="absolute bottom-2 right-2 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 text-gray-700 dark:text-slate-300 p-2 rounded-full cursor-pointer shadow hover:bg-blue-600 dark:hover:bg-indigo-500 hover:text-white transition">
                     <Camera className="h-5 w-5" />
                     <input
                       type="file"
@@ -132,50 +132,50 @@ const Profile = () => {
               {/* NAME FIELDS */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">First Name</label>
+                  <label className="text-sm font-semibold text-gray-700 dark:text-slate-300">First Name</label>
                   <Field
                     name="firstName"
                     type="text"
-                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                   />
-                  <ErrorMessage name="firstName" component="div" className="text-red-600 text-sm mt-1" />
+                  <ErrorMessage name="firstName" component="div" className="text-red-600 dark:text-red-400 text-sm mt-1" />
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Last Name</label>
+                  <label className="text-sm font-semibold text-gray-700 dark:text-slate-300">Last Name</label>
                   <Field
                     name="lastName"
                     type="text"
-                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                   />
-                  <ErrorMessage name="lastName" component="div" className="text-red-600 text-sm mt-1" />
+                  <ErrorMessage name="lastName" component="div" className="text-red-600 dark:text-red-400 text-sm mt-1" />
                 </div>
               </div>
 
               {/* AGE + GENDER */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Age</label>
+                  <label className="text-sm font-semibold text-gray-700 dark:text-slate-300">Age</label>
                   <Field
                     name="age"
                     type="number"
-                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                   />
-                  <ErrorMessage name="age" component="div" className="text-red-600 text-sm mt-1" />
+                  <ErrorMessage name="age" component="div" className="text-red-600 dark:text-red-400 text-sm mt-1" />
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Gender</label>
+                  <label className="text-sm font-semibold text-gray-700 dark:text-slate-300">Gender</label>
                   <Field
                     name="gender"
                     as="select"
-                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full mt-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                   >
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </Field>
-                  <ErrorMessage name="gender" component="div" className="text-red-600 text-sm mt-1" />
+                  <ErrorMessage name="gender" component="div" className="text-red-600 dark:text-red-400 text-sm mt-1" />
                 </div>
               </div>
 
@@ -184,7 +184,7 @@ const Profile = () => {
                 <button
                   type="button"
                   onClick={() => setEditMode(false)}
-                  className="flex-1 py-3 rounded-xl font-semibold border border-gray-300 bg-gray-50 hover:bg-gray-100 transition"
+                  className="flex-1 py-3 rounded-xl font-semibold border border-gray-300 bg-gray-50 hover:bg-gray-100 transition dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                 >
                   Cancel
                 </button>
@@ -194,8 +194,8 @@ const Profile = () => {
                   disabled={isSubmitting}
                   className={`flex-1 py-3 rounded-xl font-semibold text-white shadow transition-all ${
                     isSubmitting
-                      ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg"
+                      ? "bg-gray-300 cursor-not-allowed dark:bg-slate-700 dark:text-slate-400"
+                      : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg dark:bg-indigo-500 dark:hover:bg-indigo-400"
                   }`}
                 >
                   {isSubmitting ? "Saving..." : "Save Changes"}

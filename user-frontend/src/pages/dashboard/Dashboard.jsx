@@ -96,10 +96,10 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
             Dashboard
           </h1>
-          <p className="text-slate-500 mt-1 text-sm">
+          <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">
             Overview of sales, performance &amp; inventory
           </p>
         </div>
@@ -147,8 +147,8 @@ const Dashboard = () => {
       {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Donut Chart */}
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
-          <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-4">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 dark:border-slate-800 dark:bg-slate-900">
+          <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4">
             <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
             Sales Distribution
           </h2>
@@ -156,8 +156,8 @@ const Dashboard = () => {
         </div>
 
         {/* HeartBeat Chart */}
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
-          <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-4">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 dark:border-slate-800 dark:bg-slate-900">
+          <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4">
             <span className="w-2 h-2 rounded-full bg-red-500"></span>
             Monthly Performance
           </h2>
@@ -165,8 +165,8 @@ const Dashboard = () => {
         </div>
 
         {/* Bar Chart */}
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
-          <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-4">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 dark:border-slate-800 dark:bg-slate-900">
+          <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             Sales Trend
           </h2>
@@ -176,31 +176,31 @@ const Dashboard = () => {
 
       {/* Inventory Tables */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 md:p-6">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 md:p-6 dark:border-slate-800 dark:bg-slate-900">
           <LowStockTable items={lowStock} />
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 md:p-6">
+        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 md:p-6 dark:border-slate-800 dark:bg-slate-900">
           <ReorderAlerts items={reorderAlerts} />
         </div>
       </div>
 
       {/* Recent Transactions */}
-      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 md:p-6 mt-6">
+      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 md:p-6 mt-6 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="font-bold text-slate-800">Recent Transactions</h2>
-          <Link to="/sales/list" className="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+          <h2 className="font-bold text-slate-800 dark:text-slate-100">Recent Transactions</h2>
+          <Link to="/sales/list" className="text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300">
             View all
           </Link>
         </div>
 
         {recentSales.length === 0 ? (
-          <p className="text-slate-500 text-sm">No sales yet.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm">No sales yet.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="text-slate-500 border-b border-slate-200">
+                <tr className="text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
                   <th className="py-2 pr-2 font-medium">Invoice #</th>
                   <th className="py-2 pr-2 font-medium">Customer</th>
                   <th className="py-2 pr-2 font-medium">Date</th>
@@ -209,17 +209,17 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 {recentSales.slice(0, 5).map((sale) => (
-                  <tr key={sale._id} className="border-t border-slate-100 hover:bg-slate-50 transition">
+                  <tr key={sale._id} className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition">
                     <td className="py-2.5 pr-2">
-                      <Link to={`/sales/view/${sale._id}`} className="text-indigo-600 hover:underline font-medium">
+                      <Link to={`/sales/view/${sale._id}`} className="text-indigo-600 hover:underline font-medium dark:text-indigo-400">
                         {sale.invoiceNo}
                       </Link>
                     </td>
-                    <td className="py-2.5 pr-2 text-slate-700">{sale.customer?.name || "—"}</td>
-                    <td className="py-2.5 pr-2 text-slate-500">
+                    <td className="py-2.5 pr-2 text-slate-700 dark:text-slate-300">{sale.customer?.name || "—"}</td>
+                    <td className="py-2.5 pr-2 text-slate-500 dark:text-slate-400">
                       {new Date(sale.createdAt).toLocaleDateString("en-GB")}
                     </td>
-                    <td className="py-2.5 pr-2 text-right font-semibold tabular-nums text-slate-900">
+                    <td className="py-2.5 pr-2 text-right font-semibold tabular-nums text-slate-900 dark:text-slate-100">
                       {fmtRs(sale.grandTotal)}
                     </td>
                   </tr>

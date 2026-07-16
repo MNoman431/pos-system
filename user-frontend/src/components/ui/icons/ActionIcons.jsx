@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const baseBtn =
-  "rounded-lg border border-slate-200 p-2 transition shadow-sm";
+  "rounded-lg border border-slate-200 p-2 transition shadow-sm dark:border-slate-700";
 
 /* ================= EDIT ================= */
 export const EditIcon = ({ to, onClick, title = "Edit", disabled }) => {
@@ -18,7 +18,7 @@ export const EditIcon = ({ to, onClick, title = "Edit", disabled }) => {
       <Link
         to={to}
         title={title}
-        className={`${baseBtn} text-indigo-600 hover:bg-indigo-50 disabled:opacity-50`}
+        className={`${baseBtn} text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-indigo-500/10 disabled:opacity-50`}
       >
         <PencilIcon className="h-4 w-4" />
       </Link>
@@ -29,7 +29,7 @@ export const EditIcon = ({ to, onClick, title = "Edit", disabled }) => {
       onClick={onClick}
       disabled={disabled}
       title={title}
-      className={`${baseBtn} text-indigo-600 hover:bg-indigo-50 disabled:opacity-50`}
+      className={`${baseBtn} text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-indigo-500/10 disabled:opacity-50`}
     >
       <PencilIcon className="h-4 w-4" />
     </button>
@@ -41,7 +41,7 @@ export const ViewIcon = ({ to, title = "View" }) => (
   <Link
     to={to}
     title={title}
-    className={`${baseBtn} text-emerald-600 hover:bg-emerald-50`}
+    className={`${baseBtn} text-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-500/10`}
   >
     <EyeIcon className="h-4 w-4" />
   </Link>
@@ -53,7 +53,7 @@ export const DeleteIcon = ({ onClick, title = "Delete", disabled }) => (
     onClick={onClick}
     disabled={disabled}
     title={title}
-    className={`${baseBtn} text-red-600 hover:bg-red-50 disabled:opacity-50`}
+    className={`${baseBtn} text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10 disabled:opacity-50`}
   >
     <TrashIcon className="h-4 w-4" />
   </button>
@@ -64,7 +64,7 @@ export const DeactivateIcon = ({ onClick, title = "Deactivate" }) => (
   <button
     onClick={onClick}
     title={title}
-    className={`${baseBtn} text-red-600 hover:bg-red-50`}
+    className={`${baseBtn} text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10`}
   >
     <NoSymbolIcon className="h-4 w-4" />
   </button>
@@ -76,7 +76,7 @@ export const PlusIconBtn = ({ onClick, title = "Add", disabled }) => (
     onClick={onClick}
     disabled={disabled}
     title={title}
-    className={`${baseBtn} text-emerald-600 hover:bg-emerald-50 disabled:opacity-50`}
+    className={`${baseBtn} text-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-500/10 disabled:opacity-50`}
   >
     <PlusIcon className="h-4 w-4" />
   </button>
@@ -88,7 +88,7 @@ export const MinusIconBtn = ({ onClick, title = "Remove", disabled }) => (
     onClick={onClick}
     disabled={disabled}
     title={title}
-    className={`${baseBtn} text-red-600 hover:bg-red-50 disabled:opacity-50`}
+    className={`${baseBtn} text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10 disabled:opacity-50`}
   >
     <MinusIcon className="h-4 w-4" />
   </button>

@@ -29,7 +29,7 @@ export default function FilteredSummaryCards() {
     return (
       <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="h-24 bg-slate-100 animate-pulse rounded-2xl border border-slate-200" />
+          <div key={i} className="h-24 bg-slate-100 dark:bg-slate-800 animate-pulse rounded-2xl border border-slate-200 dark:border-slate-800" />
         ))}
       </div>
     );

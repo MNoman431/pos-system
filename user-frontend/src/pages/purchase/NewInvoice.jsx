@@ -278,8 +278,8 @@ const pollRef = useRef(null);
 
   // ---------------- UI -------------------
   return (
-    <div className="w-full min-h-screen p-6 bg-gray-100">
-      <div className="w-full bg-white shadow-xl rounded-xl p-6 border border-gray-200">
+    <div className="w-full min-h-screen p-6 bg-gray-100 dark:bg-slate-950">
+      <div className="w-full bg-white shadow-xl rounded-xl p-6 border border-gray-200 dark:bg-slate-900 dark:border-slate-800">
            <Helmet>
                         <title>New Purchase Invoice - FancyStore</title>
                         <meta name="description" content="Create a new sale invoice for a customer in FancyStore admin panel" />
@@ -287,11 +287,11 @@ const pollRef = useRef(null);
                       </Helmet>
 
         {/* HEADER */}
-        <div className="flex items-center justify-between border-b pb-4 mb-6">
-          <h2 className="text-3xl font-bold text-gray-800">New Purchase Invoice</h2>
+        <div className="flex items-center justify-between border-b pb-4 mb-6 dark:border-slate-800">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-slate-100">New Purchase Invoice</h2>
           <button
             onClick={addRow}
-            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 active:scale-95 transition"
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 active:scale-95 transition"
           >
             <PlusIcon className="h-5 w-5" />
           </button>
@@ -299,11 +299,11 @@ const pollRef = useRef(null);
 
         {/* VENDOR SELECT */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Select Vendor
           </label>
           <select
-            className="w-full border rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 transition"
+            className="w-full border rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400 transition"
             value={vendor._id}
             onChange={(e) => {
               const selected = vendors.find((v) => v._id === e.target.value);
@@ -320,27 +320,27 @@ const pollRef = useRef(null);
         </div>
 
         {/* TABLE */}
-        <div className="overflow-x-auto rounded-lg border border-gray-300 shadow-sm">
+        <div className="overflow-x-auto rounded-lg border border-gray-300 dark:border-slate-800 shadow-sm">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-100 text-gray-700">
+            <thead className="bg-gray-100 text-gray-700 dark:bg-slate-800/60 dark:text-slate-300">
               <tr>
-                <th className="border p-3 text-center">#</th>
-                <th className="border p-3 text-left">Code</th>
-                <th className="border p-3 text-left">Name</th>
-                <th className="border p-3 text-left">Cost Price</th>
-                <th className="border p-3 text-center">Qty</th>
-                <th className="border p-3 text-right">Total</th>
-                <th className="border p-3 text-center">Action</th>
+                <th className="border p-3 text-center dark:border-slate-800">#</th>
+                <th className="border p-3 text-left dark:border-slate-800">Code</th>
+                <th className="border p-3 text-left dark:border-slate-800">Name</th>
+                <th className="border p-3 text-left dark:border-slate-800">Cost Price</th>
+                <th className="border p-3 text-center dark:border-slate-800">Qty</th>
+                <th className="border p-3 text-right dark:border-slate-800">Total</th>
+                <th className="border p-3 text-center dark:border-slate-800">Action</th>
               </tr>
             </thead>
 
             <tbody>
               {items.map((item, idx) => (
-                <tr key={idx} className="hover:bg-gray-50 transition">
-                  <td className="border p-3 text-center">{idx + 1}</td>
+                <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-slate-800/60 transition">
+                  <td className="border p-3 text-center dark:border-slate-800 dark:text-slate-300">{idx + 1}</td>
 
                   {/* ITEM CODE */}
-                  <td className="border p-3">
+                  <td className="border p-3 dark:border-slate-800">
                     <input
                       id={`itemCode-${idx}`}
                       ref={idx === 0 ? firstInputRef : null}
@@ -351,42 +351,42 @@ const pollRef = useRef(null);
                       onChange={(e) => handleItemCodeChange(idx, e.target.value)}
                       onKeyDown={(e) => handleItemCodeEnter(idx, e)}
                       onBlur={(e) => handleItemCodeBlur(idx, e)}
-                      className={`w-full px-3 py-2 rounded-lg border shadow-sm transition ${
+                      className={`w-full px-3 py-2 rounded-lg border shadow-sm transition dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500 ${
                         item.isError
-                          ? "border-red-500 bg-red-50"
-                          : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                          ? "border-red-500 bg-red-50 dark:border-red-500 dark:bg-red-500/10"
+                          : "border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-slate-700 dark:focus:border-indigo-400"
                       }`}
                     />
 
                     {item.isError && (
-                      <p className="text-xs text-red-600 mt-1">Invalid item</p>
+                      <p className="text-xs text-red-600 dark:text-red-400 mt-1">Invalid item</p>
                     )}
                   </td>
 
                   {/* NAME */}
-                  <td className="border p-3">{item.itemName}</td>
+                  <td className="border p-3 dark:border-slate-800 dark:text-slate-300">{item.itemName}</td>
 
                   {/* COST PRICE */}
-                  <td className="border p-3">{item.costPrice}</td>
+                  <td className="border p-3 dark:border-slate-800 dark:text-slate-300">{item.costPrice}</td>
 
                   {/* QTY */}
-                  <td className="border p-3 text-center">
+                  <td className="border p-3 text-center dark:border-slate-800">
                     <input
                       type="number"
                       min="1"
                       value={item.qty}
                       onChange={(e) => handleQtyChange(idx, e.target.value)}
-                      className="w-20 px-2 py-1 border rounded-lg shadow-sm text-center"
+                      className="w-20 px-2 py-1 border rounded-lg shadow-sm text-center dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                     />
                   </td>
 
                   {/* TOTAL */}
-                  <td className="border p-3 text-right font-semibold">
+                  <td className="border p-3 text-right font-semibold dark:border-slate-800 dark:text-slate-100">
                     {item.lineTotal}
                   </td>
 
                   {/* ACTIONS */}
-                  <td className="border p-3">
+                  <td className="border p-3 dark:border-slate-800">
                     <div className="flex items-center justify-center gap-3">
                       <MinusIconBtn onClick={() => removeRow(idx)} />
                       <EditIcon onClick={() => editRow(idx)} />
@@ -402,21 +402,21 @@ const pollRef = useRef(null);
         {/* TOTALS + DISCOUNT */}
 <div>
           <div>
-            <label className="text-sm font-medium text-gray-600">Discount Value</label>
+            <label className="text-sm font-medium text-gray-600 dark:text-slate-400">Discount Value</label>
             <input
               type="number"
               min="0"
               value={discount}
               onChange={(e) => handleDiscountChange(e.target.value)}
-              className="ml-2 border rounded-lg px-3 py-1 w-28 text-right shadow-sm"
+              className="ml-2 border rounded-lg px-3 py-1 w-28 text-right shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
             />
           </div>
 
-          <div className="font-semibold">
+          <div className="font-semibold dark:text-slate-100">
             Subtotal: {totals.subTotal}
           </div>
 
-          <div className="font-bold text-blue-700">
+          <div className="font-bold text-blue-700 dark:text-indigo-400">
             Grand Total: {totals.grandTotal}
           </div>
         </div>
@@ -426,7 +426,7 @@ const pollRef = useRef(null);
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className={`bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition text-lg ${
+            className={`bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 transition text-lg ${
               loading ? "opacity-60 cursor-not-allowed" : ""
             }`}
           >

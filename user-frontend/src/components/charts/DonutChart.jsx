@@ -83,6 +83,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useTheme } from "../../context/ThemeContext";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -93,6 +94,8 @@ const formatRs = (v) =>
   })}`;
 
 const DonutChart = ({ summary: override }) => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const reduxSummary = useSelector((s) => s.dashboard?.summary || {});
   const summary = override || reduxSummary;
 
@@ -103,7 +106,7 @@ const DonutChart = ({ summary: override }) => {
   // If there's no meaningful data
   if (sales <= 0 && cost <= 0 && profit <= 0) {
     return (
-      <div className="h-80 flex items-center justify-center text-slate-500 text-sm">
+      <div className="h-80 flex items-center justify-center text-slate-500 dark:text-slate-400 text-sm">
         No data available.
       </div>
     );
@@ -123,7 +126,7 @@ const DonutChart = ({ summary: override }) => {
 
   const options = {
     plugins: {
-      legend: { position: "bottom", labels: { usePointStyle: true } },
+      legend: { position: "bottom", labels: { usePointStyle: true, color: isDark ? "#94a3b8" : "#475569" } },
       tooltip: {
         callbacks: {
           label: (ctx) => {

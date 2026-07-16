@@ -9,10 +9,13 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useTheme } from "../../context/ThemeContext";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const BarChart = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const { monthlyAnalytics } = useSelector((s) => s.dashboard || {});
   const labels = monthlyAnalytics?.labels || [];
   const sales = monthlyAnalytics?.sales || [];
@@ -34,7 +37,7 @@ const BarChart = () => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: "top", labels: { usePointStyle: true } },
+      legend: { position: "top", labels: { usePointStyle: true, color: isDark ? "#94a3b8" : "#475569" } },
       tooltip: {
         callbacks: {
           label: (ctx) => `Sales: Rs ${Number(ctx.raw || 0).toLocaleString()}`
@@ -42,15 +45,20 @@ const BarChart = () => {
       }
     },
     scales: {
-      x: { grid: { display: false } },
+      x: {
+        grid: { display: false },
+        ticks: { color: isDark ? "#94a3b8" : "#475569" },
+      },
       y: {
         beginAtZero: true,
+        grid: { color: isDark ? "#1e293b" : "#e2e8f0" },
         ticks: {
+          color: isDark ? "#94a3b8" : "#475569",
           callback: (v) => `Rs ${Number(v).toLocaleString()}`
         }
       }
     }
-  }), []);
+  }), [isDark]);
 
   return (
     <div className="h-80">

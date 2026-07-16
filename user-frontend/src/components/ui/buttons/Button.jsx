@@ -15,10 +15,10 @@ const Button = ({
 }) => {
   // Tailwind color variants
   const colors = {
-    blue: "bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-600/20",
-    green: "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/20",
-    red: "bg-red-600 hover:bg-red-700 text-white shadow-red-600/20",
-    gray: "bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-none",
+    blue: "bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-600/20 dark:bg-indigo-500 dark:hover:bg-indigo-400",
+    green: "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/20 dark:bg-emerald-500 dark:hover:bg-emerald-400",
+    red: "bg-red-600 hover:bg-red-700 text-white shadow-red-600/20 dark:bg-red-500 dark:hover:bg-red-400",
+    gray: "bg-slate-100 hover:bg-slate-200 text-slate-700 shadow-none dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200",
   };
   // Tailwind size variants
   const sizes = {

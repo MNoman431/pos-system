@@ -152,18 +152,18 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 px-4">
-      <div className="w-full max-w-md bg-white/80 backdrop-blur-xl shadow-xl rounded-3xl p-8 border border-white/40">
-        <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-2">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 px-4">
+      <div className="w-full max-w-md bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-xl rounded-3xl p-8 border border-white/40 dark:border-slate-800">
+        <h1 className="text-3xl font-extrabold text-center text-gray-900 dark:text-slate-100 mb-2">
           Set New Password
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           <div>
-            <label className="block mb-1 font-semibold text-gray-700">New Password</label>
+            <label className="block mb-1 font-semibold text-gray-700 dark:text-slate-300">New Password</label>
             <input
               type="password"
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               placeholder="Enter new password"
               value={pwd}
               onChange={(e) => setPwd(e.target.value)}
@@ -173,10 +173,10 @@ const ResetPassword = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-semibold text-gray-700">Confirm Password</label>
+            <label className="block mb-1 font-semibold text-gray-700 dark:text-slate-300">Confirm Password</label>
             <input
               type="password"
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               placeholder="Re-enter new password"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
@@ -188,15 +188,15 @@ const ResetPassword = () => {
           <button
             disabled={loading}
             className="w-full rounded-xl py-3 font-semibold text-white transition-all duration-200 shadow-md
-              disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed
-              bg-blue-600 hover:bg-blue-700 hover:shadow-lg"
+              disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed dark:disabled:bg-slate-700 dark:disabled:text-slate-400
+              bg-blue-600 hover:bg-blue-700 hover:shadow-lg dark:bg-indigo-500 dark:hover:bg-indigo-400"
           >
             {loading ? "Resetting..." : "Reset Password"}
           </button>
 
-          {localErr && <p className="text-red-600 text-sm text-center">{localErr}</p>}
-          {error && <p className="text-red-600 text-sm text-center">{error}</p>}
-          {fpMessage && <p className="text-green-600 text-sm text-center">{fpMessage}</p>}
+          {localErr && <p className="text-red-600 dark:text-red-400 text-sm text-center">{localErr}</p>}
+          {error && <p className="text-red-600 dark:text-red-400 text-sm text-center">{error}</p>}
+          {fpMessage && <p className="text-green-600 dark:text-emerald-400 text-sm text-center">{fpMessage}</p>}
         </form>
       </div>
     </div>

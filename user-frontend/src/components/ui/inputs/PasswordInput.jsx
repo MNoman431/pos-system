@@ -2,9 +2,9 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 
 const inputBase =
-  "w-full border rounded-lg px-3.5 py-2.5 shadow-sm bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 transition text-[15px]";
-const inputNormal = `${inputBase} border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/30`;
-const inputError = `${inputBase} border-red-400 focus:border-red-500 focus:ring-red-500/30`;
+  "w-full border rounded-lg px-3.5 py-2.5 shadow-sm bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 transition text-[15px] dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500";
+const inputNormal = `${inputBase} border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/30 dark:border-slate-700 dark:focus:border-indigo-400`;
+const inputError = `${inputBase} border-red-400 focus:border-red-500 focus:ring-red-500/30 dark:border-red-500 dark:focus:border-red-400`;
 const PasswordInput = ({
   label,
   name,
@@ -16,7 +16,7 @@ const PasswordInput = ({
   showStrengthMeter = true,
 }) => (
   <div>
-    <label className="block text-[13px] font-semibold mb-1 text-slate-700 leading-none">
+    <label className="block text-[13px] font-semibold mb-1 text-slate-700 dark:text-slate-300 leading-none">
       {label}
     </label>
     <Field name={name}>
@@ -37,7 +37,7 @@ const PasswordInput = ({
 
     {showStrengthMeter && value?.length > 0 && (
       <div className="mt-1" aria-live="polite">
-        <div className="h-1 bg-gray-200 rounded">
+        <div className="h-1 bg-gray-200 dark:bg-slate-700 rounded">
           <div
             className="h-1 rounded transition-all"
             style={{

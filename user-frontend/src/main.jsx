@@ -34,6 +34,7 @@ import "./chartConfig.js";
 import whyDidYouRenderModule from "@welldone-software/why-did-you-render";
 const toastOptions = { duration: 3000 };
 import { HelmetProvider } from "react-helmet-async";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 
 // why-did-you-render setup
 if (import.meta.env.DEV) {
@@ -43,12 +44,14 @@ if (import.meta.env.DEV) {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <HelmetProvider> 
-      <BrowserRouter>
-        <App />
-          <Toaster position="top-right" toastOptions={toastOptions} />
-      </BrowserRouter>
-      </HelmetProvider>
+      <ThemeProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <App />
+            <Toaster position="top-right" toastOptions={toastOptions} />
+          </BrowserRouter>
+        </HelmetProvider>
+      </ThemeProvider>
     </Provider>
   </StrictMode>
 );

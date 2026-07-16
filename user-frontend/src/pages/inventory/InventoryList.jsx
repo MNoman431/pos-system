@@ -55,7 +55,7 @@ const InventoryList = () => {
     "http://localhost:9999";
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 pb-28 shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 pb-28 shadow-sm dark:border-slate-800 dark:bg-slate-900">
          <Helmet>
                       <title>Inventory List - FancyStore</title>
                       <meta name="description" content="View and manage inventory items in FancyStore admin panel" />
@@ -65,23 +65,23 @@ const InventoryList = () => {
       {/* HEADER */}
       <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-lg md:text-xl font-bold text-slate-900">Inventory List</h2>
-          <p className="text-sm text-slate-500 mt-0.5">Manage your product catalog and stock levels</p>
+          <h2 className="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100">Inventory List</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Manage your product catalog and stock levels</p>
         </div>
         <Link
           to="/inventory/add"
-          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 shadow-sm transition text-center"
+          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm transition text-center"
         >
           + Add Inventory
         </Link>
       </div>
 
       {loading && (
-        <div className="mb-4 text-sm text-slate-500">Loading inventory…</div>
+        <div className="mb-4 text-sm text-slate-500 dark:text-slate-400">Loading inventory…</div>
       )}
 
       {!loading && errorList && (
-        <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 border border-red-100">
+        <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 border border-red-100 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20">
           {errorList}
         </div>
       )}
@@ -89,9 +89,9 @@ const InventoryList = () => {
       {!loading && !errorList && (
         <>
           {/* DESKTOP VIEW - TABLE */}
-          <div className="hidden md:block overflow-x-auto rounded-xl border border-slate-200">
+          <div className="hidden md:block overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
             <table className="min-w-full text-sm">
-              <thead className="bg-slate-50 sticky top-0">
+              <thead className="bg-slate-50 dark:bg-slate-800/60 sticky top-0">
                 <tr>
                   {[
                     "Image",
@@ -105,17 +105,17 @@ const InventoryList = () => {
                     "Stock",
                     "Actions",
                   ].map((h) => (
-                    <th key={h} className="px-4 py-3 text-left font-semibold text-slate-600">
+                    <th key={h} className="px-4 py-3 text-left font-semibold text-slate-600 dark:text-slate-300">
                       {h}
                     </th>
                   ))}
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {items.length === 0 ? (
                   <tr>
-                    <td colSpan="10" className="px-4 py-8 text-center text-slate-500">
+                    <td colSpan="10" className="px-4 py-8 text-center text-slate-500 dark:text-slate-400">
                       No items found
                     </td>
                   </tr>
@@ -127,35 +127,35 @@ const InventoryList = () => {
                     const outOfStock = Number(i.stockQty || 0) === 0;
 
                     return (
-                      <tr key={i._id} className="hover:bg-slate-50 transition-colors">
+                      <tr key={i._id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors">
                         <td className="px-4 py-3">
                           {src ? (
                             <img
                               src={src}
                               alt={i.name}
-                              className="h-12 w-12 rounded-lg object-cover border border-slate-200"
+                              className="h-12 w-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700"
                             />
                           ) : (
-                            <div className="h-12 w-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-xs">
+                            <div className="h-12 w-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-500 text-xs">
                               —
                             </div>
                           )}
                         </td>
 
-                        <td className="px-4 py-3 text-slate-500">{i.itemCode}</td>
-                        <td className="px-4 py-3 font-medium text-slate-800">{i.name}</td>
-                        <td className="px-4 py-3 text-slate-600">{i.category}</td>
-                        <td className="px-4 py-3 text-slate-600">{i.vendor?.name || "—"}</td>
-                        <td className="px-4 py-3 tabular-nums text-slate-700">Rs {i.costPrice}</td>
-                        <td className="px-4 py-3 tabular-nums font-semibold text-slate-800">Rs {i.retailPrice}</td>
-                        <td className="px-4 py-3 tabular-nums text-slate-600">{i.wholesalePrice}</td>
+                        <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{i.itemCode}</td>
+                        <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-100">{i.name}</td>
+                        <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{i.category}</td>
+                        <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{i.vendor?.name || "—"}</td>
+                        <td className="px-4 py-3 tabular-nums text-slate-700 dark:text-slate-300">Rs {i.costPrice}</td>
+                        <td className="px-4 py-3 tabular-nums font-semibold text-slate-800 dark:text-slate-100">Rs {i.retailPrice}</td>
+                        <td className="px-4 py-3 tabular-nums text-slate-600 dark:text-slate-300">{i.wholesalePrice}</td>
                         <td className="px-4 py-3">
                           {outOfStock ? (
-                            <span className="inline-block text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-full">
+                            <span className="inline-block text-xs font-semibold bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400 px-2 py-1 rounded-full">
                               Out of stock
                             </span>
                           ) : (
-                            <span className="tabular-nums text-slate-700">{i.stockQty}</span>
+                            <span className="tabular-nums text-slate-700 dark:text-slate-300">{i.stockQty}</span>
                           )}
                         </td>
 
@@ -180,7 +180,7 @@ const InventoryList = () => {
           {/* MOBILE VIEW - CARDS */}
           <div className="md:hidden grid grid-cols-1 gap-4">
             {items.length === 0 ? (
-              <div className="text-center py-6 text-slate-500">
+              <div className="text-center py-6 text-slate-500 dark:text-slate-400">
                 No items found
               </div>
             ) : (
@@ -193,7 +193,7 @@ const InventoryList = () => {
                 return (
                   <div
                     key={i._id}
-                    className="border border-slate-200 rounded-xl p-4 bg-white hover:shadow-md transition"
+                    className="border border-slate-200 rounded-xl p-4 bg-white hover:shadow-md transition dark:border-slate-800 dark:bg-slate-900"
                   >
                     {/* Image & Basic Info */}
                     <div className="flex gap-3 mb-3">
@@ -201,64 +201,64 @@ const InventoryList = () => {
                         <img
                           src={src}
                           alt={i.name}
-                          className="h-16 w-16 rounded-lg object-cover flex-shrink-0 border border-slate-200"
+                          className="h-16 w-16 rounded-lg object-cover flex-shrink-0 border border-slate-200 dark:border-slate-700"
                         />
                       ) : (
-                        <div className="h-16 w-16 rounded-lg bg-slate-100 flex-shrink-0" />
+                        <div className="h-16 w-16 rounded-lg bg-slate-100 dark:bg-slate-800 flex-shrink-0" />
                       )}
                       <div className="flex-1">
-                        <p className="font-semibold text-slate-800">{i.name}</p>
-                        <p className="text-sm text-slate-500">Code: {i.itemCode}</p>
-                        <p className="text-sm text-slate-500 mt-1">{i.category}</p>
+                        <p className="font-semibold text-slate-800 dark:text-slate-100">{i.name}</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">Code: {i.itemCode}</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{i.category}</p>
                       </div>
                     </div>
 
                     {/* Details Grid */}
-                    <div className="grid grid-cols-2 gap-2 mb-3 text-sm border-t border-slate-100 pt-3">
+                    <div className="grid grid-cols-2 gap-2 mb-3 text-sm border-t border-slate-100 dark:border-slate-800 pt-3">
                       <div>
-                        <p className="text-slate-500">Vendor</p>
-                        <p className="font-medium text-slate-800">
+                        <p className="text-slate-500 dark:text-slate-400">Vendor</p>
+                        <p className="font-medium text-slate-800 dark:text-slate-100">
                           {i.vendor?.name || "—"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-slate-500">Stock</p>
+                        <p className="text-slate-500 dark:text-slate-400">Stock</p>
                         {outOfStock ? (
-                          <span className="inline-block text-xs font-semibold bg-red-100 text-red-700 px-2 py-0.5 rounded-full mt-0.5">
+                          <span className="inline-block text-xs font-semibold bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400 px-2 py-0.5 rounded-full mt-0.5">
                             Out of stock
                           </span>
                         ) : (
-                          <p className="font-medium text-slate-800 tabular-nums">{i.stockQty}</p>
+                          <p className="font-medium text-slate-800 dark:text-slate-100 tabular-nums">{i.stockQty}</p>
                         )}
                       </div>
                       <div>
-                        <p className="text-slate-500">Retail</p>
-                        <p className="font-medium text-slate-800 tabular-nums">Rs {i.retailPrice}</p>
+                        <p className="text-slate-500 dark:text-slate-400">Retail</p>
+                        <p className="font-medium text-slate-800 dark:text-slate-100 tabular-nums">Rs {i.retailPrice}</p>
                       </div>
                       <div>
-                        <p className="text-slate-500">Cost</p>
-                        <p className="font-medium text-slate-800 tabular-nums">Rs {i.costPrice}</p>
+                        <p className="text-slate-500 dark:text-slate-400">Cost</p>
+                        <p className="font-medium text-slate-800 dark:text-slate-100 tabular-nums">Rs {i.costPrice}</p>
                       </div>
                     </div>
 
                     {/* Actions */}
-                    <div className="flex gap-2 border-t border-slate-100 pt-3">
+                    <div className="flex gap-2 border-t border-slate-100 dark:border-slate-800 pt-3">
                       <Link
                         to={`/inventory/view/${i._id}`}
-                        className="flex-1 px-3 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-center text-sm font-medium hover:bg-emerald-100 transition"
+                        className="flex-1 px-3 py-2 bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 rounded-lg text-center text-sm font-medium hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition"
                       >
                         View
                       </Link>
                       <Link
                         to={`/inventory/edit/${i._id}`}
-                        className="flex-1 px-3 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-center text-sm font-medium hover:bg-indigo-100 transition"
+                        className="flex-1 px-3 py-2 bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 rounded-lg text-center text-sm font-medium hover:bg-indigo-100 dark:hover:bg-indigo-500/20 transition"
                       >
                         Edit
                       </Link>
                       <button
                         onClick={() => onDelete(i._id)}
                         disabled={deleting}
-                        className="flex-1 px-3 py-2 bg-red-50 text-red-700 rounded-lg text-center text-sm font-medium hover:bg-red-100 transition disabled:opacity-50"
+                        className="flex-1 px-3 py-2 bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400 rounded-lg text-center text-sm font-medium hover:bg-red-100 dark:hover:bg-red-500/20 transition disabled:opacity-50"
                       >
                         Delete
                       </button>
@@ -270,9 +270,9 @@ const InventoryList = () => {
           </div>
 
           {/* PAGINATION */}
-          <div className="mt-6 md:mt-8 mb-24 flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between border-t border-slate-100 pt-4">
+          <div className="mt-6 md:mt-8 mb-24 flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
             {/* LEFT - Rows Per Page */}
-            <div className="flex items-center gap-2 text-sm text-slate-600 w-full md:w-auto justify-center md:justify-start">
+            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 w-full md:w-auto justify-center md:justify-start">
               <span className="whitespace-nowrap">Rows per page:</span>
 
               <select
@@ -282,8 +282,8 @@ const InventoryList = () => {
                     fetchItems({ page: 1, limit: Number(e.target.value) }),
                   )
                 }
-                className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm
-      focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition"
+                className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200
+      focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 dark:focus:border-indigo-400 transition"
               >
                 <option value={5}>5</option>
                 <option value={10}>10</option>
@@ -293,13 +293,13 @@ const InventoryList = () => {
             </div>
 
             {/* CENTER - Page Info */}
-            <div className="text-sm text-slate-600 text-center">
+            <div className="text-sm text-slate-600 dark:text-slate-300 text-center">
               Page{" "}
-              <span className="font-semibold text-slate-800">
+              <span className="font-semibold text-slate-800 dark:text-slate-100">
                 {currentPage}
               </span>{" "}
               of{" "}
-              <span className="font-semibold text-slate-800">{totalPages}</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-100">{totalPages}</span>
             </div>
 
             {/* RIGHT - Buttons */}
@@ -309,8 +309,8 @@ const InventoryList = () => {
                 onClick={() =>
                   dispatch(fetchItems({ page: currentPage - 1, limit }))
                 }
-                className="flex-1 md:flex-none rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700
-      hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex-1 md:flex-none rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 dark:border-slate-700 dark:text-slate-200
+      hover:bg-slate-100 dark:hover:bg-slate-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Previous
               </button>
@@ -320,8 +320,8 @@ const InventoryList = () => {
                 onClick={() =>
                   dispatch(fetchItems({ page: currentPage + 1, limit }))
                 }
-                className="flex-1 md:flex-none rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700
-      hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex-1 md:flex-none rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 dark:border-slate-700 dark:text-slate-200
+      hover:bg-slate-100 dark:hover:bg-slate-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Next
               </button>

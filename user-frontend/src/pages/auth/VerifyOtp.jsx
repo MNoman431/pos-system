@@ -191,19 +191,19 @@ const VerifyOtp = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-10 bg-white shadow-lg rounded-xl border border-gray-200">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
+    <div className="max-w-md mx-auto p-6 mt-10 bg-white dark:bg-slate-900 shadow-lg rounded-xl border border-gray-200 dark:border-slate-800">
+      <h1 className="text-3xl font-bold mb-6 text-center text-blue-700 dark:text-indigo-400">
         Verify OTP
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
         <div>
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1 font-medium text-gray-700 dark:text-slate-300">
             Email Address
           </label>
           <input
             type="email"
-            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)} // no trim here
@@ -213,13 +213,13 @@ const VerifyOtp = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1 font-medium text-gray-700 dark:text-slate-300">
             6-Digit OTP
           </label>
           <input
             type="text"
             inputMode="numeric"
-            className="w-full border border-gray-300 p-3 rounded-lg tracking-widest text-center text-xl font-semibold focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full border border-gray-300 p-3 rounded-lg tracking-widest text-center text-xl font-semibold focus:ring-2 focus:ring-blue-400 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
             placeholder="••••••"
             value={otp}
             onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
@@ -230,7 +230,7 @@ const VerifyOtp = () => {
 
         <button
           disabled={loading || !otpValid}
-          className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-3 rounded-lg font-semibold disabled:opacity-60"
+          className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-3 rounded-lg font-semibold disabled:opacity-60 dark:bg-indigo-500 dark:hover:bg-indigo-400"
         >
           {loading ? "Verifying..." : "Verify OTP"}
         </button>
@@ -239,7 +239,7 @@ const VerifyOtp = () => {
           <button
             type="button"
             onClick={handleResend}
-            className="text-blue-600 hover:text-blue-800 underline disabled:opacity-60"
+            className="text-blue-600 dark:text-indigo-400 hover:text-blue-800 dark:hover:text-indigo-300 underline disabled:opacity-60"
             disabled={loading || !email || cooldown > 0}
           >
             {cooldown > 0 ? `Resend in ${cooldown}s` : "Resend OTP"}
@@ -248,17 +248,17 @@ const VerifyOtp = () => {
           <button
             type="button"
             onClick={() => navigate("/forgot-password")}
-            className="text-gray-600 hover:text-gray-800 underline"
+            className="text-gray-600 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 underline"
           >
             Change Email
           </button>
         </div>
 
         {fpMessage && (
-          <p className="text-green-600 text-sm mt-2 text-center">{fpMessage}</p>
+          <p className="text-green-600 dark:text-emerald-400 text-sm mt-2 text-center">{fpMessage}</p>
         )}
         {error && (
-          <p className="text-red-600 text-sm mt-2 text-center">{error}</p>
+          <p className="text-red-600 dark:text-red-400 text-sm mt-2 text-center">{error}</p>
         )}
       </form>
     </div>

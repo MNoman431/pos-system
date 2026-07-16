@@ -86,14 +86,14 @@ const Register = () => {
       </div>
 
       {/* Form panel */}
-      <div className="flex flex-1 items-center justify-center bg-slate-50 px-3 py-8">
-      <div className="w-full max-w-xl bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 text-[15px]">
+      <div className="flex flex-1 items-center justify-center bg-slate-50 dark:bg-slate-950 px-3 py-8">
+      <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 sm:p-8 text-[15px]">
         {/* Heading (compact) */}
-        <h1 className="text-3xl font-extrabold text-center mb-1 text-slate-900 tracking-tight leading-tight">
+        <h1 className="text-3xl font-extrabold text-center mb-1 text-slate-900 dark:text-slate-100 tracking-tight leading-tight">
           Create Account
         </h1>
-        <p className="text-center text-slate-500 mb-5 text-[13px] leading-snug">
-          Join <span className="font-semibold text-indigo-600">FancyPOS</span> today
+        <p className="text-center text-slate-500 dark:text-slate-400 mb-5 text-[13px] leading-snug">
+          Join <span className="font-semibold text-indigo-600 dark:text-indigo-400">FancyPOS</span> today
         </p>
 
         {/* Hidden fake fields (autocomplete hardening) */}
@@ -207,9 +207,9 @@ const Register = () => {
               <Button type="submit" isLoading={loading || isSubmitting} color="blue">
                 Create Account
               </Button>
-               <p className="text-center text-xs text-slate-600">
+               <p className="text-center text-xs text-slate-600 dark:text-slate-400">
                  Already have an account?{" "}
-                 <Link to="/login" className="font-semibold text-indigo-600 hover:underline">
+                 <Link to="/login" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
                    Login
                  </Link>
             </p>

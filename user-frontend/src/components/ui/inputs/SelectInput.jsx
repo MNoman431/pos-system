@@ -3,13 +3,13 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 
 const inputBase =
-  "w-full border rounded-lg px-3.5 py-2.5 shadow-sm bg-white text-slate-900 focus:outline-none focus:ring-2 transition text-[15px]";
-const inputNormal = `${inputBase} border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/30`;
-const inputError = `${inputBase} border-red-400 focus:border-red-500 focus:ring-red-500/30`;
+  "w-full border rounded-lg px-3.5 py-2.5 shadow-sm bg-white text-slate-900 focus:outline-none focus:ring-2 transition text-[15px] dark:bg-slate-800 dark:text-slate-100";
+const inputNormal = `${inputBase} border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/30 dark:border-slate-700 dark:focus:border-indigo-400`;
+const inputError = `${inputBase} border-red-400 focus:border-red-500 focus:ring-red-500/30 dark:border-red-500 dark:focus:border-red-400`;
 
 const SelectInput = ({ label, name, options = [], className = "" }) => (
   <div className={className}>
-    <label className="block text-[13px] font-semibold mb-1 text-slate-700 leading-none">
+    <label className="block text-[13px] font-semibold mb-1 text-slate-700 dark:text-slate-300 leading-none">
       {label}
     </label>
     <Field as="select" name={name} className={(fieldProps) => inputNormal}>

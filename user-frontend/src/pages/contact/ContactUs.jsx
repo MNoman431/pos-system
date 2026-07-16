@@ -14,38 +14,38 @@ const Contact = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
+    <section className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-950 dark:to-slate-900">
       <div className="mx-auto max-w-6xl px-4 py-16 grid gap-10 md:grid-cols-2">
         {/* Info card */}
-        <div className="rounded-2xl bg-white p-10 shadow-xl border border-gray-200">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+        <div className="rounded-2xl bg-white dark:bg-slate-900 p-10 shadow-xl border border-gray-200 dark:border-slate-800">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-slate-100 mb-4">
             Contact Us
           </h1>
-          <p className="text-gray-600 text-lg mb-8">
+          <p className="text-gray-600 dark:text-slate-400 text-lg mb-8">
             Have questions or feedback? Send us a message—we’d love to hear from you.
           </p>
 
-          <div className="space-y-6 text-gray-700">
+          <div className="space-y-6 text-gray-700 dark:text-slate-300">
             <div>
-              <p className="font-semibold text-gray-900">Email</p>
-              <p className="text-gray-600">support@myapp.com</p>
+              <p className="font-semibold text-gray-900 dark:text-slate-100">Email</p>
+              <p className="text-gray-600 dark:text-slate-400">support@myapp.com</p>
             </div>
             <div>
-              <p className="font-semibold text-gray-900">Phone</p>
-              <p className="text-gray-600">+92-300-0000000</p>
+              <p className="font-semibold text-gray-900 dark:text-slate-100">Phone</p>
+              <p className="text-gray-600 dark:text-slate-400">+92-300-0000000</p>
             </div>
             <div>
-              <p className="font-semibold text-gray-900">Address</p>
-              <p className="text-gray-600">Lahore, Pakistan</p>
+              <p className="font-semibold text-gray-900 dark:text-slate-100">Address</p>
+              <p className="text-gray-600 dark:text-slate-400">Lahore, Pakistan</p>
             </div>
           </div>
         </div>
 
         {/* Form card */}
-        <div className="rounded-2xl bg-white p-10 shadow-xl border border-gray-200">
+        <div className="rounded-2xl bg-white dark:bg-slate-900 p-10 shadow-xl border border-gray-200 dark:border-slate-800">
           <form className="space-y-6" onSubmit={onSubmit}>
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700" htmlFor="name">
+              <label className="block text-sm font-semibold mb-1 text-gray-700 dark:text-slate-300" htmlFor="name">
                 Your Name
               </label>
               <input
@@ -56,12 +56,12 @@ const Contact = () => {
                 placeholder="Muhammad Noman Rehan"
                 value={form.name}
                 onChange={onChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700" htmlFor="email">
+              <label className="block text-sm font-semibold mb-1 text-gray-700 dark:text-slate-300" htmlFor="email">
                 Email
               </label>
               <input
@@ -72,12 +72,12 @@ const Contact = () => {
                 placeholder="you@example.com"
                 value={form.email}
                 onChange={onChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700" htmlFor="message">
+              <label className="block text-sm font-semibold mb-1 text-gray-700 dark:text-slate-300" htmlFor="message">
                 Message
               </label>
               <textarea
@@ -88,19 +88,19 @@ const Contact = () => {
                 placeholder="Write your message..."
                 value={form.message}
                 onChange={onChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-blue-600 text-white px-4 py-3 font-semibold hover:bg-blue-700 transition-all duration-200 shadow-md"
+              className="w-full rounded-lg bg-blue-600 text-white px-4 py-3 font-semibold hover:bg-blue-700 transition-all duration-200 shadow-md dark:bg-indigo-500 dark:hover:bg-indigo-400"
             >
               Send Message
             </button>
 
             {status && (
-              <p className="text-center text-sm text-green-700 bg-green-50 rounded-lg py-2 mt-4 border border-green-200">
+              <p className="text-center text-sm text-green-700 bg-green-50 rounded-lg py-2 mt-4 border border-green-200 dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/20">
                 {status}
               </p>
             )}

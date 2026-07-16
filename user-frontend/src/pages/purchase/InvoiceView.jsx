@@ -30,9 +30,9 @@ const InvoiceView = () => {
     fetchInvoice();
   }, [id]);
 
-  if (loading) return <p className="text-center py-8">Loading...</p>;
-  if (error) return <p className="text-red-500 text-center py-8">{error}</p>;
-  if (!invoice) return <p className="text-center py-8">No invoice found</p>;
+  if (loading) return <p className="text-center py-8 dark:text-slate-300">Loading...</p>;
+  if (error) return <p className="text-red-500 dark:text-red-400 text-center py-8">{error}</p>;
+  if (!invoice) return <p className="text-center py-8 dark:text-slate-300">No invoice found</p>;
 
   const formatCurrency = (v) =>
     new Intl.NumberFormat(undefined, {
@@ -49,7 +49,7 @@ const InvoiceView = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg dark:bg-slate-900 dark:border dark:border-slate-800">
          <Helmet>
                 <title>Purchase Invoice View - FancyStore</title>
                 <meta name="description" content="Purchase View invoice details in FancyStore admin panel" />
@@ -61,15 +61,15 @@ const InvoiceView = () => {
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="mb-4 px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+        className="mb-4 px-3 py-1 bg-gray-200 hover:bg-gray-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 rounded text-sm"
       >
         &larr; Back
       </button>
 
       {/* Invoice Header */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-1">Invoice #{invoice.invoiceNo}</h2>
-        <div className="text-gray-600">
+        <h2 className="text-2xl font-bold mb-1 dark:text-slate-100">Invoice #{invoice.invoiceNo}</h2>
+        <div className="text-gray-600 dark:text-slate-400">
           <p><span className="font-semibold">Vendor:</span> {invoice.vendor?.name || 'N/A'}</p>
           <p><span className="font-semibold">Purchase Date:</span> {new Date(invoice.purchaseDate).toLocaleString()}</p>
           <p>
@@ -83,26 +83,26 @@ const InvoiceView = () => {
 
       {/* Items Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-800">
+          <thead className="bg-gray-50 dark:bg-slate-800/60">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">#</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Item Name</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Code</th>
-              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700">Qty</th>
-              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700">Cost Price</th>
-              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700">Line Total</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 dark:text-slate-300">#</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 dark:text-slate-300">Item Name</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 dark:text-slate-300">Code</th>
+              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700 dark:text-slate-300">Qty</th>
+              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700 dark:text-slate-300">Cost Price</th>
+              <th className="px-4 py-2 text-right text-sm font-medium text-gray-700 dark:text-slate-300">Line Total</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white dark:bg-slate-900 divide-y divide-gray-200 dark:divide-slate-800">
             {invoice.items.map((item, idx) => (
-              <tr key={item.itemId} className="hover:bg-gray-50">
-                <td className="px-4 py-2 text-sm text-gray-600">{idx + 1}</td>
-                <td className="px-4 py-2 text-sm text-gray-600">{item.itemName}</td>
-                <td className="px-4 py-2 text-sm text-gray-600">{item.itemCode}</td>
-                <td className="px-4 py-2 text-sm text-right text-gray-600">{item.qty}</td>
-                <td className="px-4 py-2 text-sm text-right text-gray-600">{formatCurrency(item.costPrice)}</td>
-                <td className="px-4 py-2 text-sm text-right text-gray-600">{formatCurrency(item.lineTotal)}</td>
+              <tr key={item.itemId} className="hover:bg-gray-50 dark:hover:bg-slate-800/60">
+                <td className="px-4 py-2 text-sm text-gray-600 dark:text-slate-400">{idx + 1}</td>
+                <td className="px-4 py-2 text-sm text-gray-600 dark:text-slate-400">{item.itemName}</td>
+                <td className="px-4 py-2 text-sm text-gray-600 dark:text-slate-400">{item.itemCode}</td>
+                <td className="px-4 py-2 text-sm text-right text-gray-600 dark:text-slate-400">{item.qty}</td>
+                <td className="px-4 py-2 text-sm text-right text-gray-600 dark:text-slate-400">{formatCurrency(item.costPrice)}</td>
+                <td className="px-4 py-2 text-sm text-right text-gray-600 dark:text-slate-400">{formatCurrency(item.lineTotal)}</td>
               </tr>
             ))}
           </tbody>
@@ -111,18 +111,18 @@ const InvoiceView = () => {
 
       {/* Totals */}
       <div className="mt-6 flex flex-col items-end">
-        <div className="w-full max-w-md bg-gray-100 p-4 rounded">
+        <div className="w-full max-w-md bg-gray-100 dark:bg-slate-800/60 p-4 rounded">
           <div className="flex justify-between mb-1">
-            <span className="text-sm text-gray-700">SubTotal:</span>
-            <span className="text-sm font-medium text-gray-900">{formatCurrency(invoice.subTotal)}</span>
+            <span className="text-sm text-gray-700 dark:text-slate-300">SubTotal:</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-slate-100">{formatCurrency(invoice.subTotal)}</span>
           </div>
           <div className="flex justify-between mb-1">
-            <span className="text-sm text-gray-700">Discount ({invoice.discountType}):</span>
-            <span className="text-sm font-medium text-gray-900">{formatCurrency(invoice.discount)}</span>
+            <span className="text-sm text-gray-700 dark:text-slate-300">Discount ({invoice.discountType}):</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-slate-100">{formatCurrency(invoice.discount)}</span>
           </div>
-          <div className="flex justify-between pt-2 border-t border-gray-300">
-            <span className="text-lg font-semibold text-gray-800">Grand Total:</span>
-            <span className="text-lg font-semibold text-gray-800">{formatCurrency(invoice.grandTotal)}</span>
+          <div className="flex justify-between pt-2 border-t border-gray-300 dark:border-slate-700">
+            <span className="text-lg font-semibold text-gray-800 dark:text-slate-100">Grand Total:</span>
+            <span className="text-lg font-semibold text-gray-800 dark:text-slate-100">{formatCurrency(invoice.grandTotal)}</span>
           </div>
         </div>
       </div>

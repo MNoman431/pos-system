@@ -290,25 +290,25 @@ if (TRIGGERS_ENABLED && sale?._id) {
   // --------- UI ----------
   return (
     <div className="w-full pb-28">
-      <div className="w-full bg-white shadow-sm rounded-2xl border border-slate-200 p-4 md:p-6">
+      <div className="w-full bg-white shadow-sm rounded-2xl border border-slate-200 p-4 md:p-6 dark:bg-slate-900 dark:border-slate-800">
          <Helmet>
                 <title>New Sale Invoice - FancyStore</title>
                 <meta name="description" content="Create a new sale invoice for a customer in FancyStore admin panel" />
                 <link rel="canonical" href={window.location.href} />
               </Helmet>
         {/* HEADER */}
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-slate-900">
+            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100">
               New Sale Invoice
             </h2>
-            <p className="text-sm text-slate-500 mt-0.5">Scan or enter an item code to add it to the cart</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Scan or enter an item code to add it to the cart</p>
           </div>
 
           <button
             type="button"
             onClick={addRowAndFocus}
-            className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2.5 rounded-lg shadow-sm hover:bg-indigo-700 active:scale-95 transition text-sm font-semibold"
+            className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2.5 rounded-lg shadow-sm hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 active:scale-95 transition text-sm font-semibold"
             aria-label="Add row"
             title="Add row"
           >
@@ -320,14 +320,14 @@ if (TRIGGERS_ENABLED && sale?._id) {
         {/* CUSTOMER INFO */}
         <form id="add-sale-form" onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <h3 className="text-base font-semibold text-slate-800 mb-3">
+            <h3 className="text-base font-semibold text-slate-800 dark:text-slate-100 mb-3">
               Customer Details
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Name */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium text-slate-700 mb-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Customer Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -337,13 +337,13 @@ if (TRIGGERS_ENABLED && sale?._id) {
                   onChange={(e) =>
                     setCustomer({ ...customer, name: e.target.value })
                   }
-                  className="border border-slate-300 px-3.5 py-2.5 rounded-lg shadow-sm text-[15px] focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition"
+                  className="border border-slate-300 px-3.5 py-2.5 rounded-lg shadow-sm text-[15px] focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
                 />
               </div>
 
               {/* Phone */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium text-slate-700 mb-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Phone
                 </label>
                 <input
@@ -353,13 +353,13 @@ if (TRIGGERS_ENABLED && sale?._id) {
                   onChange={(e) =>
                     setCustomer({ ...customer, phone: e.target.value })
                   }
-                  className="border border-slate-300 px-3.5 py-2.5 rounded-lg shadow-sm text-[15px] focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition"
+                  className="border border-slate-300 px-3.5 py-2.5 rounded-lg shadow-sm text-[15px] focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
                 />
               </div>
 
               {/* Email */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium text-slate-700 mb-1">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -371,12 +371,12 @@ if (TRIGGERS_ENABLED && sale?._id) {
                   }
                   className={`border px-3.5 py-2.5 rounded-lg shadow-sm text-[15px] focus:outline-none focus:ring-2 transition ${
                     customer.email && !isValidEmail(customer.email)
-                      ? "border-red-400 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
-                      : "border-slate-300 focus:ring-indigo-500/30 focus:border-indigo-500"
+                      ? "border-red-400 bg-red-50 focus:ring-red-500/30 focus:border-red-500 dark:bg-red-500/10 dark:border-red-500/40 dark:text-slate-100"
+                      : "border-slate-300 focus:ring-indigo-500/30 focus:border-indigo-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                   }`}
                 />
                 {customer.email && !isValidEmail(customer.email) && (
-                  <p className="text-xs text-red-600 mt-1">
+                  <p className="text-xs text-red-600 dark:text-red-400 mt-1">
                     Please enter a valid email address
                   </p>
                 )}
@@ -385,28 +385,28 @@ if (TRIGGERS_ENABLED && sale?._id) {
           </div>
 
           {/* ITEMS TABLE */}
-          <div className="overflow-x-auto rounded-xl border border-slate-200">
+          <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
             <table className="min-w-full text-sm">
-              <thead className="bg-slate-50 text-slate-600">
+              <thead className="bg-slate-50 text-slate-600 dark:bg-slate-800/60 dark:text-slate-300">
                 <tr>
-                  <th className="border-b border-slate-200 p-3 text-center w-14 font-semibold">#</th>
-                  <th className="border-b border-slate-200 p-3 text-left w-44 font-semibold">Code</th>
-                  <th className="border-b border-slate-200 p-3 text-left font-semibold">Name</th>
-                  <th className="border-b border-slate-200 p-3 text-right w-28 font-semibold">Price</th>
-                  <th className="border-b border-slate-200 p-3 text-center w-40 font-semibold">Qty</th>
-                  <th className="border-b border-slate-200 p-3 text-right w-32 font-semibold">Total</th>
-                  <th className="border-b border-slate-200 p-3 text-center w-20 font-semibold">Action</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-center w-14 font-semibold">#</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-left w-44 font-semibold">Code</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-left font-semibold">Name</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-right w-28 font-semibold">Price</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-center w-40 font-semibold">Qty</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-right w-32 font-semibold">Total</th>
+                  <th className="border-b border-slate-200 dark:border-slate-800 p-3 text-center w-20 font-semibold">Action</th>
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {rows.map((row, index) => (
                   <tr
                     key={index}
-                    className={`transition ${row.isError ? "bg-red-50/60" : "hover:bg-slate-50"}`}
+                    className={`transition ${row.isError ? "bg-red-50/60 dark:bg-red-500/10" : "hover:bg-slate-50 dark:hover:bg-slate-800/60"}`}
                   >
                     {/* # */}
-                    <td className="p-3 text-center text-slate-400">{index + 1}</td>
+                    <td className="p-3 text-center text-slate-400 dark:text-slate-500">{index + 1}</td>
 
                     {/* ITEM CODE */}
                     <td className="p-3">
@@ -428,12 +428,12 @@ if (TRIGGERS_ENABLED && sale?._id) {
                           onBlur={(e) => handleBlur(index, e)}
                           className={`w-full px-3 py-3 text-base rounded-lg border shadow-sm transition ${
                             row.isError
-                              ? "border-red-400 bg-red-50"
-                              : "border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500"
+                              ? "border-red-400 bg-red-50 dark:bg-red-500/10 dark:border-red-500/40 dark:text-slate-100"
+                              : "border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                           }`}
                         />
                         {row.isError && (
-                          <p className="text-xs text-red-600 mt-1">
+                          <p className="text-xs text-red-600 dark:text-red-400 mt-1">
                             Invalid or not found
                           </p>
                         )}
@@ -442,17 +442,17 @@ if (TRIGGERS_ENABLED && sale?._id) {
 
                     {/* NAME */}
                     <td className="p-3">
-                      <div className="text-slate-800 font-medium">
+                      <div className="text-slate-800 font-medium dark:text-slate-100">
                         {row.isLoading ? (
-                          <span className="text-slate-400 font-normal">Loading…</span>
+                          <span className="text-slate-400 font-normal dark:text-slate-500">Loading…</span>
                         ) : (
-                          row.itemName || <span className="text-slate-300">—</span>
+                          row.itemName || <span className="text-slate-300 dark:text-slate-600">—</span>
                         )}
                       </div>
                     </td>
 
                     {/* PRICE */}
-                    <td className="p-3 text-right tabular-nums text-slate-700">
+                    <td className="p-3 text-right tabular-nums text-slate-700 dark:text-slate-300">
                       {Number(row.price || 0).toFixed(2)}
                     </td>
 
@@ -462,7 +462,7 @@ if (TRIGGERS_ENABLED && sale?._id) {
                         <button
                           type="button"
                           onClick={() => handleQty(index, Number(row.qty || 1) - 1)}
-                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 active:scale-95 transition"
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 active:scale-95 transition dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
                           aria-label="Decrease quantity"
                         >
                           <MinusIcon className="h-4 w-4" />
@@ -472,12 +472,12 @@ if (TRIGGERS_ENABLED && sale?._id) {
                           min={1}
                           value={row.qty}
                           onChange={(e) => handleQty(index, e.target.value)}
-                          className="w-14 h-9 px-1 border border-slate-300 rounded-lg shadow-sm text-center tabular-nums focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500"
+                          className="w-14 h-9 px-1 border border-slate-300 rounded-lg shadow-sm text-center tabular-nums focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
                         />
                         <button
                           type="button"
                           onClick={() => handleQty(index, Number(row.qty || 1) + 1)}
-                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 active:scale-95 transition"
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 active:scale-95 transition dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
                           aria-label="Increase quantity"
                         >
                           <PlusIcon className="h-4 w-4" />
@@ -486,7 +486,7 @@ if (TRIGGERS_ENABLED && sale?._id) {
                     </td>
 
                     {/* LINE TOTAL */}
-                    <td className="p-3 text-right font-semibold tabular-nums text-slate-900">
+                    <td className="p-3 text-right font-semibold tabular-nums text-slate-900 dark:text-slate-100">
                       {Number(row.lineTotal || 0).toFixed(2)}
                     </td>
 
@@ -505,10 +505,10 @@ if (TRIGGERS_ENABLED && sale?._id) {
       </div>
 
       {/* STICKY CHECKOUT BAR — always visible, touch-friendly totals + submit */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-slate-200 bg-white/95 backdrop-blur px-4 py-3 shadow-[0_-4px_16px_rgba(15,23,42,0.06)] lg:left-64">
+      <div className="fixed bottom-0 left-0 right-0 z-20 border-t border-slate-200 bg-white/95 backdrop-blur px-4 py-3 shadow-[0_-4px_16px_rgba(15,23,42,0.06)] lg:left-64 dark:border-slate-800 dark:bg-slate-900/95">
         <div className="mx-auto flex max-w-full flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
-            <label className="text-sm font-medium text-slate-600 whitespace-nowrap">
+            <label className="text-sm font-medium text-slate-600 whitespace-nowrap dark:text-slate-300">
               Discount
             </label>
             <input
@@ -516,19 +516,19 @@ if (TRIGGERS_ENABLED && sale?._id) {
               min="0"
               value={discountValue}
               onChange={(e) => setDiscountValue(Number(e.target.value || 0))}
-              className="border border-slate-300 rounded-lg px-3 py-2 w-24 text-right shadow-sm tabular-nums focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500"
+              className="border border-slate-300 rounded-lg px-3 py-2 w-24 text-right shadow-sm tabular-nums focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:focus:border-indigo-400"
             />
           </div>
 
           <div className="flex items-center justify-between gap-6 md:justify-end">
-            <div className="text-sm text-slate-500">
+            <div className="text-sm text-slate-500 dark:text-slate-400">
               Subtotal{" "}
-              <span className="ml-1 font-semibold text-slate-800 tabular-nums">
+              <span className="ml-1 font-semibold text-slate-800 tabular-nums dark:text-slate-100">
                 Rs {Number(totals.subTotal).toFixed(2)}
               </span>
             </div>
 
-            <div className="text-lg font-bold text-indigo-700 tabular-nums whitespace-nowrap">
+            <div className="text-lg font-bold text-indigo-700 tabular-nums whitespace-nowrap dark:text-indigo-400">
               Total: Rs {Number(totals.grandTotal).toFixed(2)}
             </div>
 
@@ -536,7 +536,7 @@ if (TRIGGERS_ENABLED && sale?._id) {
               type="submit"
               form="add-sale-form"
               disabled={loading}
-              className={`bg-indigo-600 text-white py-3 px-8 rounded-lg shadow-sm hover:bg-indigo-700 active:scale-95 transition text-base font-semibold whitespace-nowrap ${
+              className={`bg-indigo-600 text-white py-3 px-8 rounded-lg shadow-sm hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 active:scale-95 transition text-base font-semibold whitespace-nowrap ${
                 loading ? "opacity-60 cursor-not-allowed active:scale-100" : ""
               }`}
             >

@@ -145,20 +145,20 @@ export default function ForgetPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 px-4">
-      <div className="w-full max-w-md bg-white/80 backdrop-blur-xl shadow-xl rounded-3xl p-8 border border-white/40">
-        <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-2">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 px-4">
+      <div className="w-full max-w-md bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-xl rounded-3xl p-8 border border-white/40 dark:border-slate-800">
+        <h1 className="text-3xl font-extrabold text-center text-gray-900 dark:text-slate-100 mb-2">
           Forgot Password?
         </h1>
 
-        <p className="text-center text-gray-600 mb-8 text-sm">
+        <p className="text-center text-gray-600 dark:text-slate-400 mb-8 text-sm">
           Don’t worry! Enter your email and we'll send an OTP to reset your password.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           <input
             type="email"
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)} // no trim here
@@ -172,8 +172,8 @@ export default function ForgetPassword() {
             disabled={loading || !emailValid || cooldown > 0}
             className={`w-full py-3 rounded-xl font-semibold text-white shadow-md transition-all duration-200 ${
               loading || !emailValid || cooldown > 0
-                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg"
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed dark:bg-slate-700 dark:text-slate-400"
+                : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg dark:bg-indigo-500 dark:hover:bg-indigo-400"
             }`}
           >
             {loading
@@ -182,12 +182,12 @@ export default function ForgetPassword() {
               ? `Wait ${cooldown}s`
               : "Send OTP"}
           </button>
-          
+
 <div className="flex items-center justify-between text-sm mt-4">
   <button
     type="button"
     onClick={() => navigate("/login")}
-    className="text-gray-600 hover:text-gray-800 underline"
+    className="text-gray-600 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 underline"
   >
     ← Back to Login
   </button>
@@ -195,7 +195,7 @@ export default function ForgetPassword() {
   <button
     type="button"
     onClick={() => navigate("/register")}
-    className="text-blue-600 hover:text-blue-800 underline font-medium"
+    className="text-blue-600 dark:text-indigo-400 hover:text-blue-800 dark:hover:text-indigo-300 underline font-medium"
   >
     Create new account →
   </button>
@@ -204,19 +204,19 @@ export default function ForgetPassword() {
 
           {/* Inline messages (keep) */}
           {fpMessage && (
-            <p className="text-green-600 text-sm text-center font-medium">
+            <p className="text-green-600 dark:text-emerald-400 text-sm text-center font-medium">
               {fpMessage}
             </p>
           )}
           {error && (
-            <p className="text-red-600 text-sm text-center font-medium">
+            <p className="text-red-600 dark:text-red-400 text-sm text-center font-medium">
               {error}
             </p>
           )}
         </form>
 
         {/* Optional: a subtle helper below form */}
-        <p className="text-center text-xs text-gray-500 mt-4">
+        <p className="text-center text-xs text-gray-500 dark:text-slate-500 mt-4">
           Make sure you enter the email you used to register your account.
         </p>
       </div>

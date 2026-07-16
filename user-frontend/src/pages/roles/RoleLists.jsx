@@ -76,52 +76,52 @@ export default function RoleLists() {
   ];
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <Breadcrumbs paths={breadcrumbPaths} />
 
       {/* Header */}
       <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-lg md:text-xl font-bold text-slate-900">Roles List</h1>
-          <p className="text-sm text-slate-500 mt-0.5">Manage system roles and permissions</p>
+          <h1 className="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100">Roles List</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Manage system roles and permissions</p>
         </div>
         <Link
           to="/dashboard/roles/add"
-          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 shadow-sm transition text-center"
+          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm transition text-center"
         >
           + Add Role
         </Link>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl border border-slate-200">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
         <table className="w-full text-left text-sm">
-          <thead className="bg-slate-50">
+          <thead className="bg-slate-50 dark:bg-slate-800/60">
             <tr>
-              <th className="px-4 py-3 font-semibold text-slate-600">Role Name</th>
-              <th className="px-4 py-3 font-semibold text-slate-600">Description</th>
-              <th className="px-4 py-3 font-semibold text-slate-600">Permissions</th>
-              <th className="px-4 py-3 text-center font-semibold text-slate-600">Actions</th>
+              <th className="px-4 py-3 font-semibold text-slate-600 dark:text-slate-300">Role Name</th>
+              <th className="px-4 py-3 font-semibold text-slate-600 dark:text-slate-300">Description</th>
+              <th className="px-4 py-3 font-semibold text-slate-600 dark:text-slate-300">Permissions</th>
+              <th className="px-4 py-3 text-center font-semibold text-slate-600 dark:text-slate-300">Actions</th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
             {roles.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-slate-500">
+                <td colSpan={4} className="px-4 py-8 text-center text-slate-500 dark:text-slate-400">
                   No roles found
                 </td>
               </tr>
             ) : (
               roles.map((role) => (
-                <tr key={role._id} className="hover:bg-slate-50 transition-colors">
+                <tr key={role._id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors">
                   {/* Role Name */}
-                  <td className="px-4 py-4 font-medium text-slate-800">
+                  <td className="px-4 py-4 font-medium text-slate-800 dark:text-slate-100">
                     {role.roleName}
                   </td>
 
                   {/* Description */}
-                  <td className="px-4 py-4 text-slate-600">
+                  <td className="px-4 py-4 text-slate-600 dark:text-slate-300">
                     {role.description || "-"}
                   </td>
 
@@ -133,13 +133,13 @@ export default function RoleLists() {
                         .map(([key]) => (
                           <span
                             key={key}
-                            className="bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full text-xs font-medium"
+                            className="bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 px-2 py-1 rounded-full text-xs font-medium"
                           >
                             {DISPLAY_PERMISSIONS[key] || key}
                           </span>
                         ))}
                       {Object.keys(role.roleMap || {}).length === 0 && (
-                        <span className="text-slate-400 text-sm">
+                        <span className="text-slate-400 dark:text-slate-500 text-sm">
                           No Permissions
                         </span>
                       )}
@@ -151,7 +151,7 @@ export default function RoleLists() {
                     <div className="flex items-center justify-center gap-2">
                       <Link
                         to={`/dashboard/roles/${role._id}/edit`}
-                        className="rounded-lg border border-slate-200 p-2 text-indigo-600 hover:bg-indigo-50 transition shadow-sm"
+                        className="rounded-lg border border-slate-200 p-2 text-indigo-600 hover:bg-indigo-50 dark:border-slate-700 dark:text-indigo-400 dark:hover:bg-indigo-500/10 transition shadow-sm"
                         title="Edit"
                       >
                         <FiEdit2 size={16} />

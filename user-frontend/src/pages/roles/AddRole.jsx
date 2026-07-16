@@ -88,12 +88,12 @@ const AddRole = () => {
   };
 
   return (
-    <div className="w-full mx-auto bg-white p-10 shadow-xl rounded-2xl border border-gray-200">
-      <h1 className="text-3xl font-bold text-gray-900 mb-1">
+    <div className="w-full mx-auto bg-white p-10 shadow-xl rounded-2xl border border-gray-200 dark:bg-slate-900 dark:border-slate-800">
+      <h1 className="text-3xl font-bold text-gray-900 mb-1 dark:text-slate-100">
         {isEditMode ? "Edit Role" : "Add New Role"}
       </h1>
 
-      <p className="text-gray-500 mb-8">
+      <p className="text-gray-500 mb-8 dark:text-slate-400">
         {isEditMode
           ? "Update role details and permissions"
           : "Create a new user role and assign permissions below"}
@@ -102,14 +102,14 @@ const AddRole = () => {
       <form onSubmit={handleSubmit} className="space-y-7">
         {/* Role Name */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-1 dark:text-slate-300">
             Role Name
           </label>
           <input
             type="text"
             value={roleName}
             onChange={(e) => setRoleName(e.target.value)}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
             placeholder="Enter role name..."
             required
           />
@@ -117,13 +117,13 @@ const AddRole = () => {
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-1 dark:text-slate-300">
             Description
           </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400"
             placeholder="Optional description..."
             rows={3}
           />
@@ -131,7 +131,7 @@ const AddRole = () => {
 
         {/* Permissions */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-gray-800">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-slate-100">
             Permissions
           </h3>
 
@@ -139,15 +139,15 @@ const AddRole = () => {
             {Object.entries(PERMISSIONS).map(([key, label]) => (
               <label
                 key={key}
-                className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100"
+                className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 dark:border-slate-800 dark:bg-slate-800/60 dark:hover:bg-slate-800"
               >
                 <input
                   type="checkbox"
                   checked={!!roleMap[key]}
                   onChange={() => togglePermission(key)}
-                  className="w-5 h-5 accent-blue-600"
+                  className="w-5 h-5 accent-blue-600 dark:accent-indigo-500"
                 />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-gray-700 dark:text-slate-300">
                   {label}
                 </span>
               </label>
@@ -158,7 +158,7 @@ const AddRole = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="w-1/2 mx-auto block bg-blue-600 text-white py-3 rounded-xl font-semibold text-lg shadow hover:bg-blue-700 transition"
+          className="w-1/2 mx-auto block bg-blue-600 text-white py-3 rounded-xl font-semibold text-lg shadow hover:bg-blue-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 transition"
         >
           {isEditMode ? "Update Role" : "Save Role"}
         </button>

@@ -22,9 +22,10 @@ const vendorSchema = Yup.object({
 
 const inputClass =
   "w-full rounded-md border border-slate-300 px-3 py-2 text-sm " +
-  "focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none";
+  "focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none " +
+  "dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400";
 
-const errorClass = "text-xs text-red-600 mt-0.5";
+const errorClass = "text-xs text-red-600 dark:text-red-400 mt-0.5";
 
 const AddVendor = () => {
   const dispatch = useDispatch();
@@ -46,8 +47,8 @@ const AddVendor = () => {
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-md border border-slate-200 p-6">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex items-center justify-center px-4">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-md border border-slate-200 p-6 dark:bg-slate-900 dark:border-slate-800">
            <Helmet>
                         <title>New Vendor - FancyStore</title>
                         <meta name="description" content="Create a new vendor for the inventory in FancyStore admin panel" />
@@ -56,10 +57,10 @@ const AddVendor = () => {
 
         {/* Header */}
         <div className="mb-5 text-center">
-          <h2 className="text-xl font-semibold text-slate-800">
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
             {isEdit ? "Edit Vendor" : "Add Vendor"}
           </h2>
-          <p className="text-xs text-slate-500">Vendor information</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Vendor information</p>
         </div>
 
         <Formik
@@ -103,7 +104,7 @@ const AddVendor = () => {
 
               {/* Vendor Name */}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Vendor Name <span className="text-red-500">*</span>
                 </label>
                 <Field name="name" className={inputClass} />
@@ -112,7 +113,7 @@ const AddVendor = () => {
 
               {/* Contact Person */}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Contact Person <span className="text-red-500">*</span>
                 </label>
                 <Field name="contactPerson" className={inputClass} />
@@ -125,7 +126,7 @@ const AddVendor = () => {
 
               {/* Phone */}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Phone
                 </label>
                 <Field name="phone" className={inputClass} />
@@ -133,7 +134,7 @@ const AddVendor = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Email
                 </label>
                 <Field type="email" name="email" className={inputClass} />
@@ -142,7 +143,7 @@ const AddVendor = () => {
 
               {/* Address */}
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Address
                 </label>
                 <Field
@@ -159,8 +160,8 @@ const AddVendor = () => {
                 disabled={loading || isSubmitting}
                 className={`w-full rounded-md py-2.5 text-sm font-semibold transition ${
                   loading || isSubmitting
-                    ? "bg-slate-300 text-slate-600 cursor-not-allowed"
-                    : "bg-blue-600 text-white hover:bg-blue-700"
+                    ? "bg-slate-300 text-slate-600 cursor-not-allowed dark:bg-slate-700 dark:text-slate-400"
+                    : "bg-blue-600 text-white hover:bg-blue-700 dark:bg-indigo-500 dark:hover:bg-indigo-400"
                 }`}
               >
                 {isEdit ? "Update Vendor" : "Save Vendor"}

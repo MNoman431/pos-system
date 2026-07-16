@@ -115,14 +115,17 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import { useTheme } from "../../context/ThemeContext";
 
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler);
 
 const HeartBeatChart = ({ labels = [], sales = [] }) => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   if (!labels.length) {
     return (
-      <div className="h-80 flex items-center justify-center text-slate-500 text-sm">
+      <div className="h-80 flex items-center justify-center text-slate-500 dark:text-slate-400 text-sm">
         No data for this period.
       </div>
     );
@@ -153,7 +156,7 @@ const HeartBeatChart = ({ labels = [], sales = [] }) => {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: "top", labels: { usePointStyle: true } },
+        legend: { position: "top", labels: { usePointStyle: true, color: isDark ? "#94a3b8" : "#475569" } },
         tooltip: {
           callbacks: {
             label: (ctx) => {
@@ -167,10 +170,15 @@ const HeartBeatChart = ({ labels = [], sales = [] }) => {
         },
       },
       scales: {
-        x: { grid: { display: false } },
+        x: {
+          grid: { display: false },
+          ticks: { color: isDark ? "#94a3b8" : "#475569" },
+        },
         y: {
           beginAtZero: true,
+          grid: { color: isDark ? "#1e293b" : "#e2e8f0" },
           ticks: {
+            color: isDark ? "#94a3b8" : "#475569",
             callback: (v) =>
               `Rs ${Number(v).toLocaleString(undefined, {
                 minimumFractionDigits: 2,
@@ -180,7 +188,7 @@ const HeartBeatChart = ({ labels = [], sales = [] }) => {
         },
       },
     }),
-    []
+    [isDark]
   );
 
   return (

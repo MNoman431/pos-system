@@ -46,7 +46,7 @@ const InvoiceList = () => {
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <Helmet>
         <title>Recent Purchase Invoices - FancyStore</title>
         <meta name="description" content="View recent purchase invoices in FancyStore admin panel" />
@@ -59,55 +59,55 @@ const InvoiceList = () => {
 
       <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-lg md:text-xl font-bold text-slate-900">Purchase Invoices</h2>
-          <p className="text-sm text-slate-500 mt-0.5">Stock purchased from vendors</p>
+          <h2 className="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100">Purchase Invoices</h2>
+          <p className="text-sm text-slate-500 mt-0.5 dark:text-slate-400">Stock purchased from vendors</p>
         </div>
         <Link
           to="/purchase/new"
-          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 shadow-sm transition text-center"
+          className="w-full sm:w-auto rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm transition text-center"
         >
           + New Invoice
         </Link>
       </div>
 
       {/* TABLE */}
-      <div className="overflow-x-auto rounded-xl border border-slate-200">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
         <table className="min-w-full text-sm">
-          <thead className="bg-slate-50">
+          <thead className="bg-slate-50 dark:bg-slate-800/60">
             <tr>
               {["#", "Invoice No", "Vendor", "Grand Total", "Actions"].map((h) => (
-                <th key={h} className="px-4 py-3 text-left font-semibold text-slate-600">
+                <th key={h} className="px-4 py-3 text-left font-semibold text-slate-600 dark:text-slate-300">
                   {h}
                 </th>
               ))}
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
             {purchases.length === 0 && !loading ? (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-slate-500">
+                <td colSpan={5} className="px-4 py-8 text-center text-slate-500 dark:text-slate-400">
                   No purchases found.
                 </td>
               </tr>
             ) : (
               purchases.map((p, index) => (
-                <tr key={p._id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-4 py-3 text-slate-500">
+                <tr key={p._id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors">
+                  <td className="px-4 py-3 text-slate-500 dark:text-slate-400">
                     {(currentPage - 1) * limit + index + 1}
                   </td>
 
                   <td className="px-4 py-3">
-                    <Link to={`/purchase/${p._id}`} className="text-indigo-600 hover:underline font-medium">
+                    <Link to={`/purchase/${p._id}`} className="text-indigo-600 hover:underline font-medium dark:text-indigo-400">
                       {p.invoiceNo}
                     </Link>
                   </td>
 
-                  <td className="px-4 py-3 text-slate-600">
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
                     {p.vendor?.name || "N/A"}
                   </td>
 
-                  <td className="px-4 py-3 font-semibold tabular-nums text-slate-900">
+                  <td className="px-4 py-3 font-semibold tabular-nums text-slate-900 dark:text-slate-100">
                     {formatCurrency(p.grandTotal)}
                   </td>
 
@@ -116,7 +116,7 @@ const InvoiceList = () => {
                       <ViewIcon to={`/purchase/${p._id}`} />
                       <button
                         onClick={() => handlePDF(p._id)}
-                        className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition shadow-sm"
+                        className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800 transition shadow-sm"
                       >
                         Download PDF
                       </button>
@@ -131,31 +131,31 @@ const InvoiceList = () => {
 
       {/* Pagination */}
       {meta?.totalPages > 1 && (
-        <div className="flex justify-between items-center mt-6 border-t border-slate-100 pt-4">
+        <div className="flex justify-between items-center mt-6 border-t border-slate-100 dark:border-slate-800 pt-4">
           <button
             onClick={() => setCurrentPage((p) => p - 1)}
             disabled={currentPage === 1 || loading}
-            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Previous
           </button>
 
-          <span className="text-sm text-slate-600">
-            Page <span className="font-semibold text-slate-800">{currentPage}</span> of{" "}
-            <span className="font-semibold text-slate-800">{meta.totalPages}</span>
+          <span className="text-sm text-slate-600 dark:text-slate-300">
+            Page <span className="font-semibold text-slate-800 dark:text-slate-100">{currentPage}</span> of{" "}
+            <span className="font-semibold text-slate-800 dark:text-slate-100">{meta.totalPages}</span>
           </span>
 
           <button
             onClick={() => setCurrentPage((p) => p + 1)}
             disabled={currentPage === meta.totalPages || loading}
-            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Next
           </button>
         </div>
       )}
 
-      {error && <p className="text-red-600 text-sm mt-4">{error}</p>}
+      {error && <p className="text-red-600 dark:text-red-400 text-sm mt-4">{error}</p>}
     </div>
   );
 };
