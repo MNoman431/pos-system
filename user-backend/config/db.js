@@ -33,6 +33,9 @@ export async function connectDB() {
     console.log("✅ MongoDB connected successfully");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err.message);
-    process.exit(1);
+    // Don't process.exit() here — this file also runs inside Vercel's
+    // serverless function, where exiting would kill the whole invocation
+    // instead of letting the caller decide how to handle the failure.
+    throw err;
   }
 }
