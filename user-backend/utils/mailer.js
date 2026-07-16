@@ -17,10 +17,9 @@ export const mailer = nodemailer.createTransport({
   host: SMTP_HOST,
   port: PORT,
   secure: SECURE,
-  auth: {
-    user: SMTP_USER,
-    pass: SMTP_PASS,
-  },
+  // Omit auth entirely when unconfigured so nodemailer skips AUTH negotiation
+  // instead of hanging until connectionTimeout/greetingTimeout with undefined credentials.
+  auth: SMTP_USER && SMTP_PASS ? { user: SMTP_USER, pass: SMTP_PASS } : undefined,
   connectionTimeout: 20_000,
   greetingTimeout: 20_000,
   socketTimeout: 20_000,
@@ -33,6 +32,11 @@ export const mailer = nodemailer.createTransport({
  * attachments: Array<{ filename: string, content: Buffer|string, contentType?: string, encoding?: string }>
  */
 export const sendMail = async ({ to, subject, html, text, attachments }) => {
+  const from = FROM_EMAIL || SMTP_USER;
+  if (!from) {
+    throw new Error("Cannot send email: set FROM_EMAIL or SMTP_USER in .env");
+  }
+
   // Normalize attachments to a nodemailer-friendly structure
   const normalizedAttachments =
     attachments?.map((a) => {
@@ -58,7 +62,7 @@ export const sendMail = async ({ to, subject, html, text, attachments }) => {
     }) || [];
 
   const info = await mailer.sendMail({
-    from: FROM_EMAIL || SMTP_USER,
+    from,
     to,
     subject,
     text,
@@ -73,7 +77,7 @@ export const sendMail = async ({ to, subject, html, text, attachments }) => {
 };
 
 export const sendOTPEmail = async ({ to, otp, minutes = 10 }) => {
-  const subject = "Your MyApp Password Reset Code";
+  const subject = "Your FancyPOS Password Reset Code";
   const text = `Your OTP is ${otp}. It will expire in ${minutes} minutes. If you did not request this, ignore this email.`;
 
   const html = `

@@ -154,7 +154,8 @@ export const initiatePasswordReset = async (email) => {
 
   try {
     await sendOTPEmail({ to: normalizedEmail, otp, minutes: 10 });
-  } catch {
+  } catch (err) {
+    console.error("Failed to send OTP email:", err.message);
     user.resetOTP = undefined;
     user.resetOTPExpires = undefined;
     await user.save();
